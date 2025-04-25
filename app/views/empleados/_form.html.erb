@@ -1,0 +1,62 @@
+<%= form_with(model: empleado) do |form| %>
+  <% if empleado.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(empleado.errors.count, "error") %> prohibited this empleado from being saved:</h2>
+
+      <ul>
+        <% empleado.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nombre, style: "display: block" %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= form.label :apellido_materno, style: "display: block" %>
+    <%= form.text_field :apellido_materno %>
+  </div>
+
+  <div>
+    <%= form.label :apellido_paterno, style: "display: block" %>
+    <%= form.text_field :apellido_paterno %>
+  </div>
+
+  <div>
+    <%= form.label :puesto, style: "display: block" %>
+    <%= form.text_field :puesto %>
+  </div>
+
+  <div>
+    <%= form.label :horario, style: "display: block" %>
+    <%= form.text_field :horario %>
+  </div>
+
+  <div>
+    <%= form.label :rfc, style: "display: block" %>
+    <%= form.text_field :rfc %>
+  </div>
+
+  <div>
+    <%= form.label :telefono, style: "display: block" %>
+    <%= form.text_field :telefono %>
+  </div>
+
+  <div>
+    <%= form.label :edad, style: "display: block" %>
+    <%= form.number_field :edad %>
+  </div>
+
+  <div>
+    <%= form.label :fecha_contratacion, style: "display: block" %>
+    <%= form.date_field :fecha_contratacion %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
