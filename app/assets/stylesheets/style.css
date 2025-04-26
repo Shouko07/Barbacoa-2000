@@ -408,6 +408,7 @@ body.dark .home .text{
 		border-radius: 50%;
 		vertical-align: middle;
 		margin-right: 10px;
+        width: 60px;
 	}
 	.status {
 		font-size: 30px;

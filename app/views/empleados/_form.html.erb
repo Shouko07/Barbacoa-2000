@@ -55,7 +55,10 @@
     <%= form.label :fecha_contratacion, style: "display: block" %>
     <%= form.date_field :fecha_contratacion %>
   </div>
-
+  <div>
+    <%= form.label :profile_picture, style: "display: block" %>
+    <%= form.file_field :profile_picture %>
+  </div>
   <div>
     <%= form.submit %>
   </div>
