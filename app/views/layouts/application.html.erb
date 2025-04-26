@@ -9,6 +9,9 @@
     
     <!----======== CSS ======== -->
 <%= stylesheet_link_tag "style", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "show", "data-turbo-track": "reload" %>
+
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -34,8 +37,12 @@
     </nav>
 
     <section class="home">
+    </br>
+    <% if notice %>
+          <%= render 'layouts/alerts' %>
+    <% end %>
     </br></br>
-          <%= yield %>
+    <%= yield %>
     </section>
 
     <%= javascript_include_tag "script", "data-turbo-track": "reload", defer: true %>
