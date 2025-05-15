@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :empleados
   resources :empleados
   get "home/dashboard"
   root "home#index"

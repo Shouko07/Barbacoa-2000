@@ -65,21 +65,21 @@
 
 <div class="bottom-content">
     <li class="">
-        <%= link_to new_user_registration_path do %>
+        <%= link_to new_empleado_registration_path do %>
             <i class='bx bx-log-out icon' ></i>
             <span class="text nav-text">Registrarse</span>
          <% end %>
     </li>
-    <% if user_signed_in? %>
+    <% if empleado_signed_in? %>
     <li class="">
-        <%= link_to destroy_user_session_path, method: :delete do %>
+        <%= link_to destroy_empleado_session_path, method: :delete do %>
             <i class='bx bx-log-out icon' ></i>
             <span class="text nav-text">Cerrar sesion</span>
          <% end %>
     </li>
     <% else %>
         <li class="">
-        <%= link_to new_user_session_path do %>
+        <%= link_to new_empleado_session_path do %>
             <i class='bx bx-log-out icon' ></i>
             <span class="text nav-text">Iniciar sesion</span>
          <% end %>
