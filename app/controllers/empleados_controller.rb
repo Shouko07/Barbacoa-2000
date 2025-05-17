@@ -1,6 +1,8 @@
+require 'axlsx'
+
 class EmpleadosController < ApplicationController
   before_action :set_empleado, only: %i[ show edit update destroy ]
-
+  
   # GET /empleados or /empleados.json
   def index
     @empleados = Empleado.all
@@ -56,7 +58,40 @@ class EmpleadosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # Export to Excel
+  def exportar_excel
+    p = Axlsx::Package.new
+    wb = p.workbook
 
+    wb.add_worksheet(name: "Empleados") do |sheet|
+      # Encabezados
+      sheet.add_row [
+        "Email", "Nombre", "Apellido Materno", "Apellido Paterno",
+        "Puesto", "Horario", "RFC", "Teléfono", "Edad", "Fecha de Contratación"
+      ]
+
+      # Datos
+      Empleado.all.each do |e|
+        sheet.add_row [
+          e.email,
+          e.nombre,
+          e.apellido_materno,
+          e.apellido_paterno,
+          e.puesto,
+          e.horario,
+          e.rfc,
+          e.telefono,
+          e.edad,
+          e.fecha_contratacion.strftime("%d/%m/%Y") # formato de fecha
+        ]
+      end
+    end
+
+    # Enviar como descarga
+    send_data p.to_stream.read,
+              filename: "empleados.xlsx",
+              type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_empleado
@@ -65,6 +100,6 @@ class EmpleadosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def empleado_params
-      params.expect(empleado: [ :email, :nombre, :apellido_materno, :apellido_paterno, :puesto, :horario, :rfc, :telefono, :edad, :fecha_contratacion, :profile_image_id ])
+      params.expect(empleado: [ :email, :nombre, :apellido_materno, :apellido_paterno, :puesto, :horario, :rfc, :telefono, :edad, :fecha_contratacion,:profile_image, :profile_image_id ])
     end
 end

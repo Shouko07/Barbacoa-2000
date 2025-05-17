@@ -1,0 +1,68 @@
+<header>
+<div class="image-text">
+<span class="image">
+  <% if empleado_signed_in? && current_empleado.profile_image.attached? %>
+    <%= image_tag current_empleado.profile_image, alt: "Foto de perfil", class: "avatar" %>
+  <% else %>
+    <%= image_tag "Barbacoa.png", alt: "Imagen por defecto", class: "avatar" %>
+  <% end %>
+</span>
+
+<div class="text logo-text">
+  <% if empleado_signed_in? %>
+    <span class="name"><%= "#{current_empleado.nombre} #{current_empleado.apellido_paterno}" %></span>
+    <span class="ubicacion"><%= current_empleado.puesto %></span>
+  <% else %>
+    <span class="name">Barbacoa</span>
+    <span class="ubicacion">Tijuana</span>
+  <% end %>
+</div>
+
+</div>
+
+<i class='bx bx-chevron-right toggle'></i>
+</header>
+
+<div class="menu-bar">
+<div class="menu">
+<div id="menu-container">
+  <%= render 'home/menu' %>
+</div>
+
+<div id="accesibilidad-container" style="display:none;">
+  <%= render 'home/accesibilidad' %>
+</div>
+
+</div>
+
+<div class="bottom-content">
+    <% if empleado_signed_in? %>
+    <li class="">
+        <%= link_to destroy_empleado_session_path, method: :delete, data: { turbo_method: :delete } do %>
+            <i class='bx bx-log-out icon' ></i>
+            <span class="text nav-text">Cerrar sesion</span>
+         <% end %>
+    </li>
+    <% else %>
+        <li class="">
+        <%= link_to new_empleado_session_path do %>
+            <i class='bx bx-log-in icon'></i>
+            <span class="text nav-text">Iniciar sesion</span>
+         <% end %>
+    </li>
+    <% end %>
+    <li class="mode">
+        <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+        </div>
+        <span class="mode-text text">Modo oscuro</span>
+
+        <div class="toggle-switch">
+            <span class="switch"></span>
+        </div>
+    </li>
+    
+</div>
+</div>
+</header>

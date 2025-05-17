@@ -1,7 +1,12 @@
 <div class="profile-page">
   <div class="content">
     <div class="content__cover">
-<%= image_tag "Komi.jpg", alt: "Logo de la empresa", class: "content__avatar" %><!--Agregar imagen de empleado-->
+    <% if @empleado.profile_image.attached? %>
+      <%= image_tag @empleado.profile_image, class: "content__avatar", alt: "Foto de perfil"%>
+    <% else %>
+      <%= image_tag "Barbacoa.png", alt: "Logo de la empresa", class: "content__avatar" %>
+    <% end %>
+
     </div>
     <div class="content__actions">
     <%= link_to empleados_path do %>

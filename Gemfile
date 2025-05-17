@@ -3,7 +3,8 @@ source "https://rubygems.org"
 #Mis gemas
 gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'rspec-rails'
-
+gem 'axlsx'
+gem 'axlsx_rails'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

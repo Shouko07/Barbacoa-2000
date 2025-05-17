@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @mesa %>
+
+<div>
+  <%= link_to "Edit this mesa", edit_mesa_path(@mesa) %> |
+  <%= link_to "Back to mesas", mesas_path %>
+
+  <%= button_to "Destroy this mesa", @mesa, method: :delete %>
+</div>

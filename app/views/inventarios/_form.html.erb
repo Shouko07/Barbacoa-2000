@@ -1,0 +1,32 @@
+<%= form_with(model: inventario) do |form| %>
+  <% if inventario.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(inventario.errors.count, "error") %> prohibited this inventario from being saved:</h2>
+
+      <ul>
+        <% inventario.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :producto, style: "display: block" %>
+    <%= form.text_field :producto %>
+  </div>
+
+  <div>
+    <%= form.label :cantidad, style: "display: block" %>
+    <%= form.number_field :cantidad %>
+  </div>
+
+  <div>
+    <%= form.label :tipo_almacenamiento, style: "display: block" %>
+    <%= form.text_field :tipo_almacenamiento %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

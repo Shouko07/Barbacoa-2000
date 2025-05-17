@@ -10,6 +10,9 @@
     <!----======== CSS ======== -->
 <%= stylesheet_link_tag "style", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag "show", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "signin", "data-turbo-track": "reload" %>
+
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -27,13 +30,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= javascript_importmap_tags %>
+        
     <%= yield :head %>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 </head>
 <body>
     <nav class="sidebar close">
-    <%= render 'home/header' %>
+    <%= render 'home/sidebar' %>
     </nav>
 
     <section class="home">
@@ -45,6 +50,5 @@
     <%= yield %>
     </section>
 
-    <%= javascript_include_tag "script", "data-turbo-track": "reload", defer: true %>
 </body>
 </html>

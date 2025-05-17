@@ -1,0 +1,12 @@
+<% content_for :title, "Editing inventario" %>
+
+<h1>Editing inventario</h1>
+
+<%= render "form", inventario: @inventario %>
+
+<br>
+
+<div>
+  <%= link_to "Show this inventario", @inventario %> |
+  <%= link_to "Back to inventarios", inventarios_path %>
+</div>

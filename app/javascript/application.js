@@ -1,3 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "./sidebar"
+import "./grayscale"
+import "./accesibilidad"
+import "./lupa"

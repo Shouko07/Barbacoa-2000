@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_050612) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_17_005704) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,7 +62,76 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_050612) do
     t.index ["reset_password_token"], name: "index_empleados_on_reset_password_token", unique: true
   end
 
+  create_table "eventos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.string "ubicacion"
+    t.string "tipo"
+    t.date "fecha"
+    t.string "estado"
+    t.integer "cantidad_pagada"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventarios", force: :cascade do |t|
+    t.string "producto"
+    t.integer "cantidad"
+    t.string "tipo_almacenamiento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mesas", force: :cascade do |t|
+    t.integer "numero"
+    t.string "disponibilidad"
+    t.integer "capacidad"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orden_productos", force: :cascade do |t|
+    t.integer "orden_id", null: false
+    t.integer "producto_id", null: false
+    t.integer "cantidad"
+    t.decimal "precio_unitario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orden_id"], name: "index_orden_productos_on_orden_id"
+    t.index ["producto_id"], name: "index_orden_productos_on_producto_id"
+  end
+
+  create_table "ordens", force: :cascade do |t|
+    t.integer "numero_personas"
+    t.integer "total"
+    t.integer "mesa_id", null: false
+    t.integer "empleado_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empleado_id"], name: "index_ordens_on_empleado_id"
+    t.index ["mesa_id"], name: "index_ordens_on_mesa_id"
+  end
+
+  create_table "ordens_productos", id: false, force: :cascade do |t|
+    t.integer "orden_id", null: false
+    t.integer "producto_id", null: false
+    t.index ["orden_id", "producto_id"], name: "index_ordens_productos_on_orden_id_and_producto_id"
+    t.index ["producto_id", "orden_id"], name: "index_ordens_productos_on_producto_id_and_orden_id"
+  end
+
+  create_table "productos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "precio"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "empleados", "active_storage_attachments", column: "profile_image_id"
+  add_foreign_key "orden_productos", "ordens"
+  add_foreign_key "orden_productos", "productos"
+  add_foreign_key "ordens", "empleados"
+  add_foreign_key "ordens", "mesas"
 end

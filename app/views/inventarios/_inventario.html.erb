@@ -1,0 +1,14 @@
+
+<tr>
+  <td class="text-center"><%= inventario.producto %></td>
+  <td class="text-center"><%= inventario.cantidad %></td>
+  <td class="text-center"><%= inventario.tipo_almacenamiento %></td>
+  <td>
+    <%= link_to inventario, class: "settings", title: "Settings", data: { toggle: "tooltip" } do %>
+    <i class="material-icons">&#xE8B8;</i>
+  <% end %>
+    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+  </td>
+</tr>
+
+

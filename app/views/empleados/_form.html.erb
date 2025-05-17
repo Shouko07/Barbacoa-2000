@@ -1,15 +1,29 @@
-<%= form_with(model: empleado) do |form| %>
+<%= form_with(model: empleado, local: true, html: { multipart: true }) do |form| %>
   <% if empleado.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(empleado.errors.count, "error") %> prohibited this empleado from being saved:</h2>
-
       <ul>
-        <% empleado.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% empleado.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, style: "display: block" %>
+    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
 
   <div>
     <%= form.label :nombre, style: "display: block" %>
@@ -17,13 +31,13 @@
   </div>
 
   <div>
-    <%= form.label :apellido_materno, style: "display: block" %>
-    <%= form.text_field :apellido_materno %>
+    <%= form.label :apellido_paterno, style: "display: block" %>
+    <%= form.text_field :apellido_paterno %>
   </div>
 
   <div>
-    <%= form.label :apellido_paterno, style: "display: block" %>
-    <%= form.text_field :apellido_paterno %>
+    <%= form.label :apellido_materno, style: "display: block" %>
+    <%= form.text_field :apellido_materno %>
   </div>
 
   <div>
@@ -43,7 +57,7 @@
 
   <div>
     <%= form.label :telefono, style: "display: block" %>
-    <%= form.text_field :telefono %>
+    <%= form.telephone_field :telefono %>
   </div>
 
   <div>
@@ -55,11 +69,13 @@
     <%= form.label :fecha_contratacion, style: "display: block" %>
     <%= form.date_field :fecha_contratacion %>
   </div>
+
   <div>
-    <%= form.label :profile_picture, style: "display: block" %>
-    <%= form.file_field :profile_picture %>
+    <%= form.label :profile_image, "Foto de perfil", style: "display: block" %>
+    <%= form.file_field :profile_image %>
   </div>
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "Guardar cambios" %>
   </div>
 <% end %>
