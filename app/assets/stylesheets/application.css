@@ -11,3 +11,36 @@
 .grayscale {
   filter: grayscale(1);
 }
+.link-resaltado {
+  background-color: yellow;
+  color: black !important;
+  border: 2px dashed red;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.nav-link.activo {
+  background-color: #f4e3dc;
+  border-left: 4px solid #603719;
+  border-radius:  8px;
+}
+body.animaciones-reducidas * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+body.alto-contraste {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+body.alto-contraste a,
+body.alto-contraste .nav-link,
+body.alto-contraste .text {
+  color: #ffff00 !important; /* amarillo para mayor contraste */
+  background-color: #000 !important;
+  border-color: #fff !important;
+}
+
+body.alto-contraste .icon {
+  color: #fff !important;
+}

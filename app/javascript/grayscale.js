@@ -4,6 +4,7 @@ document.addEventListener("turbo:load", () => {
 
   grayscaleBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    grayscaleBtn.parentElement.classList.toggle("activo");
     body.classList.toggle("grayscale");
   });
 });

@@ -12,38 +12,42 @@
   </a>
 </li>
 
-        <li class="nav-link">
-            <%= link_to root_path, class: "nav-link link-body-emphasis" do %>
+
+<li class="nav-link">
+  <%= link_to "#", id: "lector-contextual", class: "nav-link link-body-emphasis", role: "button" do %>
                 <i class='bx bxs-captions icon'></i>
                 <span class="text nav-text">Lector de pantalla</span>
-            <% end %>
-        </li>
+  <% end %>
+</li>
 
-        <li class="nav-link">
-            <%= link_to root_path, class: "nav-link link-body-emphasis" do %>
-                <i class='bx bx-link-alt icon'></i>
-                <span class="text nav-text">Resaltar enlaces</span>
-            <% end %>
-        </li>
+<li class="nav-link">
+  <%= link_to "#", id: "resaltar-links", class: "nav-link link-body-emphasis", role: "button" do %>
+    <i class='bx bx-link-alt icon'></i>
+    <span class="text nav-text">Resaltar enlaces</span>
+  <% end %>
+</li>
+<li class="nav-link">
+  <%= link_to "#", class: "nav-link link-body-emphasis", id: "btn-animaciones" do %>
+    <i class='bx bx-pause-circle icon'></i>
+    <span class="text nav-text">Pausar animacion</span>
+  <% end %>
+</li>
 
-        <li class="nav-link">
-            <%= link_to root_path, class: "nav-link link-body-emphasis" do %>
-                <i class='bx bx-font-size icon'></i>
-                <span class="text nav-text">Tamaño de letra</span>
-            <% end %>
-        </li>
 
-        <li class="nav-link">
-            <%= link_to empleados_path, class: "nav-link link-body-emphasis" do %>
-                <i class='bx bxs-user icon'></i>
-                <span class="text nav-text">Empleados</span>
-            <% end %>
-        </li>
-                <li class="nav-link">
-            <%= link_to empleados_path, class: "nav-link link-body-emphasis" do %>
-                <i class='bx bxs-user icon'></i>
-                <span class="text nav-text">Empleados</span>
-            <% end %>
+<li class="nav-link">
+  <%= link_to "#", id: "aumentar-texto", class: "nav-link link-body-emphasis", role: "button" do %>
+    <i class='bx bx-plus icon'></i>
+    <span class="text nav-text">Aumentar texto</span>
+  <% end %>
+</li>
+
+<li class="nav-link">
+  <%= link_to "#", id: "disminuir-texto", class: "nav-link link-body-emphasis", role: "button" do %>
+    <i class='bx bx-minus icon'></i>
+    <span class="text nav-text">Disminuir texto</span>
+  <% end %>
+</li>
+
         </li>
   <li class="nav-link">
     <a href="#" id="show-menu-btn" class="nav-link link-body-emphasis" style="cursor: pointer;">

@@ -84,7 +84,7 @@ body.dark{
 }
 
 .sidebar .text{
-    font-size: 17px;
+    font-size: 1rem;
     font-weight: 500;
     white-space: nowrap;
     opacity: 1;
