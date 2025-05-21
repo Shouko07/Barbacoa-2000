@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :productos
   resources :mesas
   devise_for :empleados
-    get 'empleados/exportar_excel', to: 'empleados#exportar_excel'
+    get "empleados/exportar_excel", to: "empleados#exportar_excel"
 
     resources :empleados
   get "home/dashboard"

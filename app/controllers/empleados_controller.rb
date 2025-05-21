@@ -1,8 +1,8 @@
-require 'axlsx'
+require "axlsx"
 
 class EmpleadosController < ApplicationController
   before_action :set_empleado, only: %i[ show edit update destroy ]
-  
+
   # GET /empleados or /empleados.json
   def index
     @empleados = Empleado.all
@@ -100,6 +100,6 @@ class EmpleadosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def empleado_params
-      params.expect(empleado: [ :email, :nombre, :apellido_materno, :apellido_paterno, :puesto, :horario, :rfc, :telefono, :edad, :fecha_contratacion,:profile_image, :profile_image_id ])
+      params.expect(empleado: [ :email, :nombre, :apellido_materno, :apellido_paterno, :puesto, :horario, :rfc, :telefono, :edad, :fecha_contratacion, :profile_image, :profile_image_id ])
     end
 end
