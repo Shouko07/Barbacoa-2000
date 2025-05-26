@@ -18,7 +18,6 @@ RSpec.describe "ordens/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", orden_path(orden), "post" do
-
       assert_select "input[name=?]", "orden[numero_personas]"
 
       assert_select "input[name=?]", "orden[total]"

@@ -13,7 +13,6 @@ RSpec.describe "productos/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", productos_path, "post" do
-
       assert_select "input[name=?]", "producto[nombre]"
 
       assert_select "input[name=?]", "producto[precio]"

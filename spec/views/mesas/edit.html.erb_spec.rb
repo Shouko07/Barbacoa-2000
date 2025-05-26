@@ -17,7 +17,6 @@ RSpec.describe "mesas/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", mesa_path(mesa), "post" do
-
       assert_select "input[name=?]", "mesa[numero]"
 
       assert_select "input[name=?]", "mesa[disponibilidad]"
