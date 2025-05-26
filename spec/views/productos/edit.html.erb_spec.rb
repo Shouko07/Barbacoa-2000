@@ -8,7 +8,6 @@ RSpec.describe "productos/edit", type: :view do
       descripcion: "MyString"
     )
   }
-
   before(:each) do
     assign(:producto, producto)
   end

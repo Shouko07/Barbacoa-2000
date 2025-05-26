@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe "productos/new", type: :view do
   before(:each) do
     assign(:producto, Producto.new(
@@ -8,7 +7,6 @@ RSpec.describe "productos/new", type: :view do
       descripcion: "MyString"
     ))
   end
-
   it "renders new producto form" do
     render
 
