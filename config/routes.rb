@@ -1,13 +1,30 @@
 Rails.application.routes.draw do
+  get "orden_productos/create"
   resources :eventos
   resources :inventarios
-  resources :ordens
+resources :ordens do
+  resources :orden_productos, only: [ :create ]
+    member do
+    patch "cerrar"
+    get "detalle_compra"
+  end
+end
+
   resources :productos
-  resources :mesas
+  resources :mesas do
+    post "crear_orden", on: :member
+  end
+  get "productos/search", to: "productos#search"
+
   devise_for :empleados
-    get 'empleados/exportar_excel', to: 'empleados#exportar_excel'
+    get "empleados/exportar_excel", to: "empleados#exportar_excel"
 
     resources :empleados
+
+
+  resources :reportes, only: [ :index ]
+  get "reportes/por_fecha/:fecha", to: "reportes#por_fecha", as: "reporte_por_fecha"
+
   get "home/dashboard"
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

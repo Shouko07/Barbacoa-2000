@@ -1,0 +1,46 @@
+<h3>Agregar productos</h3></br>
+<div class="col-md-6">
+    
+<p>Estado de la orden: <%= @orden.estado_orden ? "Abierta" : "Cerrada" %></p>
+
+  <div class="table-responsive">
+
+    <div class="table-ordenes-wrapper">
+        </br>
+      <%= form_with url: orden_orden_productos_path(@orden), method: :post, local: true, class: "row g-3 align-items-center" do %>
+        <!-- Input hidden para producto_id -->
+        <input type="hidden" name="producto_id" id="producto-id-hidden" />
+
+        <div class="mb-3 w-100">
+                      <span><b>Selecciona un producto:</b></span></br></br>
+          <input type="text"
+                 id="product-search"
+                 class="form-control"
+                 placeholder="Buscar producto...">
+          <ul id="product-list" class="list-group mt-1" style="max-height: 200px; overflow-y: auto; display: none;">
+            <% @productos.each do |producto| %>
+              <li class="list-group-item product-item"
+                  data-id="<%= producto.id %>"
+                  data-nombre="<%= producto.nombre.downcase %>"
+                  style="cursor: pointer;">
+                <%= producto.nombre %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div id="selected-products-container" class="m-4 d-flex align-items-center gap-2" style="font-weight: 500; font-size: 1rem; color: #444;">
+          <span>Producto seleccionado:</span>
+          <div id="selected-products"></div>
+        </div>
+
+        <div class="col-auto">
+          <%= number_field_tag :cantidad, 1, min: 1, class: "form-control", style: "width: 100px;" %>
+        </div>
+        <div class="col-auto"></br>
+          <%= submit_tag "Agregar producto", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

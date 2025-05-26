@@ -1,80 +1,84 @@
-<div class="text">
-  <h2>Sign up</h2>
+  <h1 class="text-center my-4">Registrar nuevo empleado</h1>
+<div class="formulario-container">
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+      <div class="row">
+        <h4>Datos del usuario</h4>
 
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+          <div class="input-icon"><i class="fa fa-envelope"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Contraseña" %>
+          <div class="input-icon"><i class="fa fa-key"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :nombre %><br />
-      <%= f.text_field :nombre %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmar contraseña" %>
+          <div class="input-icon"><i class="fa fa-key"></i></div>
+        </div>
+      </div>
+        <h4>Información Personal</h4>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :nombre, placeholder: "Nombre" %>
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :apellido_paterno %><br />
-      <%= f.text_field :apellido_paterno %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :apellido_paterno, placeholder: "Apellido paterno" %>
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :apellido_materno %><br />
-      <%= f.text_field :apellido_materno %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :apellido_materno, placeholder: "Apellido materno" %>
+          <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :puesto %><br />
-      <%= f.text_field :puesto %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :puesto, placeholder: "Puesto" %>
+          <div class="input-icon"><i class="fa fa-briefcase"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :horario %><br />
-      <%= f.text_field :horario %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :horario, placeholder: "Horario" %>
+          <div class="input-icon"> <i class='bx bx-calendar-week icon'></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :rfc %><br />
-      <%= f.text_field :rfc %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.text_field :rfc, placeholder: "RFC" %>
+          <div class="input-icon"><i class="fa fa-id-card"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :telefono %><br />
-      <%= f.telephone_field :telefono %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.telephone_field :telefono, placeholder: "Teléfono" %>
+          <div class="input-icon"><i class="fa fa-phone"></i></div>
+        </div>
 
-    <div class="field">
-      <%= f.label :edad %><br />
-      <%= f.number_field :edad %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.number_field :edad, placeholder: "Edad" %>
+          <div class="input-icon"><i class="fa fa-calendar"></i></div>
+        </div>
+        <div class="input-group input-group-icon">
+          <%= f.date_field :fecha_contratacion, placeholder: "Fecha de contratación" %>
+          <div class="input-icon">
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
 
-    <div class="field">
-      <%= f.label :fecha_contratacion %><br />
-      <%= f.date_select :fecha_contratacion %>
-    </div>
-    <div class="field">
-      <%= f.label :profile_image, "Foto de perfil" %><br />
-      <%= f.file_field :profile_image %>
-    </div>
+        <div class="input-group input-group-icon">
+          <%= f.file_field :profile_image %>
+          <div class="input-icon">
+            <i class="fa fa-image"></i>
+          </div>
+        </div>
 
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+        <div class="input-group">
+          <%= f.submit "Registrar", style: "background-color: #603719; color: white; padding: 10px 20px; border: none; border-radius: 5px;" %>
+        </div>
+      </div>
+    <% end %>
 </div>

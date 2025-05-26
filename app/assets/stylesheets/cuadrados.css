@@ -1,0 +1,65 @@
+.cuadro-wrapper {
+  font-family: 'Poppins', sans-serif;
+  color: #2c2c51;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem; /* ⬅ más separación */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.cuadro-card {
+  flex: 0 1 calc(20% - 1.6rem); /* ⬅ ajustado para más espacio */
+  height: 150px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 7px 7px 15px rgba(2, 28, 53, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Hover */
+.cuadro-card:hover {
+  transform: scale(1.05);
+}
+
+.cuadro-card label {
+  cursor: pointer;
+  text-align: center;
+}
+
+.cuadro-card h5 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.cuadro-card h2 {
+  font-size: 28px;
+}
+
+.cuadro-card span {
+  font-weight: 400;
+  font-size: 18px;
+  color: #7b7b93;
+}
+.empleado-foto {
+  width: 100px;         /* Ajusta el tamaño que desees */
+  height: 100px;        /* Que sea cuadrado para que el círculo quede perfecto */
+  object-fit: cover;    /* Para que la imagen se recorte y no se deforme */
+  border-radius: 50%;   /* Aquí está la magia para hacerlo circular */
+  border: 2px solid #ccc; /* Opcional: un borde ligero */
+  box-shadow: 0 0 5px rgba(0,0,0,0.2); /* Opcional: sombra suave */
+   margin-bottom: 10px;
+}
+.empleado-card {
+  text-align: center;
+  max-width: 200px;
+  height: 250px;
+}

@@ -1,0 +1,53 @@
+.dia-actual {
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 7rem;
+}
+
+.calendario {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100vh;           /* Altura de toda la ventana */
+}
+
+.calendario .text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendario {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+.datedreamer__calendar {
+  max-width: none !important;   /* para eliminar el max-width 240px */
+  width: 600px !important;      /* ancho deseado */
+  height: auto !important;      /* altura se ajusta al contenido */
+  padding: 20px !important;     /* opcional: más padding */
+}
+.datedreamer__calendar_days .datedreamer__calendar_day button {
+  font-size: 24px !important;    /* fuente mucho más grande */
+  padding: 12px !important;
+}
+
+.datedreamer__calendar_title {
+  font-size: 28px !important;
+  font-weight: 700 !important;
+}
+
+.datedreamer__calendar_day-header.datedreamer__calendar_day {
+  font-size: 20px !important;
+}
+
+.datedreamer__calendar_prev svg,
+.datedreamer__calendar_next svg {
+  transform: scale(3) !important;
+}

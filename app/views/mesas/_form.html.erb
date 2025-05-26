@@ -18,7 +18,11 @@
 
   <div>
     <%= form.label :disponibilidad, style: "display: block" %>
-    <%= form.text_field :disponibilidad %>
+    <% if mesa.new_record? %>
+      <%= form.text_field :disponibilidad, disabled: true, placeholder: "Disponible" %>
+    <% else %>
+      <%= form.text_field :disponibilidad %>
+    <% end %>
   </div>
 
   <div>

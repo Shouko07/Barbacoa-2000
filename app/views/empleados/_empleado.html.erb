@@ -11,15 +11,25 @@
     <%= link_to "#{empleado.nombre} #{empleado.apellido_paterno} #{empleado.apellido_materno}", empleado_path(empleado) %>
   </td>        <td class="text-center"><%= empleado.puesto %></td>
   <td class="text-center"><%= empleado.horario %></td>
-  <td><span class="status text-success">&bull;</span> Active</td>
   <td class="text-center"><%= empleado.rfc %></td>
   <td class="text-center"><%= empleado.telefono %></td>
   <td class="text-center"><%= empleado.edad %></td>
   <td class="text-center"><%= empleado.fecha_contratacion %></td>
   <td>
-    <%= link_to empleado, class: "settings", title: "Settings", data: { toggle: "tooltip" } do %>
+    <%= link_to empleado, class: "settings", title: "Ajustes", data: { toggle: "tooltip" } do %>
     <i class="material-icons">&#xE8B8;</i>
   <% end %>
-    <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-  </td>
+<%= button_to empleado_path(empleado), method: :delete,
+      data: { turbo_confirm: '¿Estás seguro que quieres borrar este empleado?' },
+      form: { class: 'inline-form' },
+      class: 'btn-link',
+      title: 'Borrar',
+      data: { toggle: 'tooltip' } do %>
+  <i class="material-icons">&#xE5C9;</i>
+<% end %>
+
+
+
+
+</td>
 </tr>

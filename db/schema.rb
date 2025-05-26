@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_17_005704) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_26_004941) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_005704) do
     t.integer "empleado_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "estado_orden", default: true, null: false
     t.index ["empleado_id"], name: "index_ordens_on_empleado_id"
     t.index ["mesa_id"], name: "index_ordens_on_mesa_id"
   end
@@ -121,8 +122,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_005704) do
 
   create_table "productos", force: :cascade do |t|
     t.string "nombre"
-    t.string "precio"
     t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "precio", precision: 10, scale: 2
+  end
+
+  create_table "reportes", force: :cascade do |t|
+    t.date "fecha"
+    t.decimal "total_ventas"
+    t.integer "total_ordenes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

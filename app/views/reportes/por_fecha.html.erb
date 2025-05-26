@@ -1,0 +1,47 @@
+<div class="wrapper">
+<div class="wrapper">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+    <h1 style="margin: 0;">Órdenes del día <%= params[:fecha] %></h1>
+    <%= link_to 'Volver al calendario', reportes_path, style: "padding: 0.5rem 1rem; background-color: #603719; color: white; border: 1px solid #603719; border-radius: 0.5rem; text-decoration: none; font-weight: 600; cursor: pointer;" %>
+  </div>
+</br>
+  <div style="margin-bottom: 1rem; min-height:120px; text-align: right;">
+    <p style="margin: 0; font-weight: bold;">Total del día: <%= number_to_currency(@ordenes.sum(&:total)) %></p>
+  </div>
+  <% if @ordenes.any? %>
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Mesa</th>
+          <th>Total</th>
+          <th>Empleado</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ordenes.each do |orden| %>
+          <tr>
+            <td><%= orden.id %></td>
+            <td><%= orden.mesa_id %></td>
+            <td class="tabla-amount"><%= number_to_currency(orden.total) %></td>
+            <td><%= orden.empleado_id %></td>
+            <td>
+              <% if orden.estado_orden %>
+                <p class="tabla-status tabla-status-paid">Abierta</p>
+              <% else %>
+                <p class="tabla-status tabla-status-unpaid">Cerrada</p>
+              <% end %>
+            </td>
+            <td><%= orden.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= link_to "Ver detalle", detalle_compra_orden_path(orden) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No hay órdenes para esta fecha.</p>
+  <% end %>
+</div>

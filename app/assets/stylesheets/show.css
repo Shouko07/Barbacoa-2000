@@ -6,7 +6,6 @@
  
 body {
   background: #fff;
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: rgba(0,0,0,0.6);
 }
 .profile-page {
@@ -41,7 +40,7 @@ body {
 }
 .profile-page .content__cover {
   position: relative;
-  background: linear-gradient(150deg, #1d8cf8 20%, #3358f4 100%);
+  background: linear-gradient(150deg, #834519 20%, #603719 100%);
 }
 .profile-page .content__bull {
   display: none;
@@ -175,11 +174,6 @@ body {
     padding: 0.5rem;
   }
 }
-@media (max-width: 990px) {
-  .profile-page .content__actions a span {
-    display: none;
-  }
-}
 .profile-page .content__actions a svg {
   width: 2rem;
   margin-right: 0.4rem;
@@ -193,10 +187,10 @@ body {
   opacity: 0.5;
 }
 .profile-page .content__actions a:first-child {
-  color: #ff4086;
+  color: #603719;
 }
 .profile-page .content__actions a:hover:first-child {
-  background: #1d8cf8;
+  background: #603719;
   color: #fff;
 }
 .profile-page .content__title {
@@ -328,7 +322,7 @@ body {
   left: 0;
   z-index: 1;
   overflow: hidden;
-  background: linear-gradient(150deg, #1d8cf8 20%, #3358f4 100%);
+  background: linear-gradient(150deg, #603719 20%, #834519 100%);
 }
 .profile-page .bg span:nth-child(1) {
   display: block;

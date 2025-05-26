@@ -1,17 +1,43 @@
-<div id="<%= dom_id mesa %>">
-  <p>
-    <strong>Numero:</strong>
-    <%= mesa.numero %>
-  </p>
+<% orden_del_dia = mesa.ordens.order(created_at: :desc).first %>
 
-  <p>
-    <strong>Disponibilidad:</strong>
-    <%= mesa.disponibilidad %>
-  </p>
+<% if orden_del_dia.nil? || orden_del_dia.estado_orden == false %>
+  <!-- La mesa está disponible si no tiene orden o la última orden está cerrada -->
+  <%= link_to "#", class: "cuadro-card", style: "text-decoration: none; color: inherit;", onclick: "$('#form-empleado-#{mesa.id}').toggle(); return false;" do %>
+    <label>
+      <h5>Mesa <%= mesa.numero %></h5>
+      <h2>
+        <span>Capacidad: <b><%= mesa.capacidad %></b></span>
+      </h2>
+      <p><span style="color: green;">Disponible</span></p>
+    </label>
+  <% end %>
 
-  <p>
-    <strong>Capacidad:</strong>
-    <%= mesa.capacidad %>
-  </p>
+<% else %>
+  <!-- La mesa está ocupada sólo si la última orden está abierta -->
+  <%= link_to orden_path(orden_del_dia), class: "cuadro-card", style: "text-decoration: none; color: inherit;" do %>
+    <label>
+      <h5>Mesa <%= mesa.numero %></h5>
+      <h2>
+        <span>Capacidad: <b><%= mesa.capacidad %></b></span>
+      </h2>
+      <p><span style="color: red;">Ocupada</span></p>
+    </label>
+  <% end %>
+<% end %>
 
-</div>
+
+
+
+
+<tr id="form-empleado-<%= mesa.id %>" style="display: none;">
+  <td colspan="4">
+    <%= form_with url: crear_orden_mesa_path(mesa), method: :post, local: true do %>
+      <%= select_tag :empleado_id, options_from_collection_for_select(Empleado.all, :id, :nombre), prompt: "Selecciona un empleado" %>
+      <%= submit_tag "Asignar y abrir orden", class: "btn btn-primary" %>
+    <% end %>
+  </td>
+</tr>
+
+
+
+

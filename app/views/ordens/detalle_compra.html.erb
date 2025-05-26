@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div style="display: flex; align-items:  center; gap: 2rem;">
+    <h1 style="margin: 0;">Detalle de Compra para Orden #<%= @orden.id %></h1>
+    <%= link_to 'Volver al reporte', request.referer || reportes_path, class: "btn-cafe" %>
+  </div>
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unitario</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @productos.each do |op| %>
+        <tr>
+          <td><%= op.producto.nombre %></td>
+          <td><%= op.cantidad %></td>
+          <td><%= number_to_currency(op.producto.precio) %></td>
+          <td class="tabla-amount"><%= number_to_currency(op.cantidad * op.producto.precio) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p style="font-weight: 700; font-size: 1.2rem; text-align: right; margin-top: 2rem;">
+    Total: <%= number_to_currency(@orden.total) %>
+  </p>
+</div>

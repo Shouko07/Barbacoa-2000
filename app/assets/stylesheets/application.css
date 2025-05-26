@@ -8,6 +8,7 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+ 
 .grayscale {
   filter: grayscale(1);
 }
@@ -27,20 +28,49 @@ body.animaciones-reducidas * {
   animation: none !important;
   transition: none !important;
   scroll-behavior: auto !important;
+  transform: none !important;
 }
-body.alto-contraste {
-  background-color: #000 !important;
-  color: #fff !important;
+.product-item.highlighted {
+  background-color: #cce5ff;
+  cursor: pointer;
+}
+.info-dia {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #333;
 }
 
-body.alto-contraste a,
-body.alto-contraste .nav-link,
-body.alto-contraste .text {
-  color: #ffff00 !important; /* amarillo para mayor contraste */
-  background-color: #000 !important;
-  border-color: #fff !important;
+.info-dia p {
+  margin: 0.5rem 0;
+}
+.inline-form {
+  display: inline;       /* Hace que el form no sea bloque sino en línea */
+  margin: 0;             /* Quita margenes */
+  padding: 0;            /* Quita padding */
+  background: none;      /* Sin fondo */
+  border: none;          /* Sin borde */
+}
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: rgb(231, 66, 66);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
 }
 
-body.alto-contraste .icon {
-  color: #fff !important;
+.btn-link:hover {
+  color: rgb(153, 4, 4);
+  text-decoration: none;
+}
+.botones-flex {
+  display: flex;     /* Los pone en fila (horizontal) */
+  gap: 10px;         /* Espacio entre los botones */
+  justify-content: start; /* Alineados al inicio (izquierda) */
+  align-items: center;    /* Verticalmente centrados si tienen diferentes alturas */
 }

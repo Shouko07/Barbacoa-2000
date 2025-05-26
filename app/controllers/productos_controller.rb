@@ -5,7 +5,18 @@ class ProductosController < ApplicationController
   def index
     @productos = Producto.all
   end
+    def search
+    query = params[:q]
+    @productos = if query.present?
+                   Producto.where("nombre ILIKE ?", "%#{query}%").limit(10)
+    else
+                   Producto.none
+    end
 
+    respond_to do |format|
+      format.json { render json: @productos.select(:id, :nombre) }
+    end
+  end
   # GET /productos/1 or /productos/1.json
   def show
   end
@@ -33,6 +44,7 @@ class ProductosController < ApplicationController
       end
     end
   end
+
 
   # PATCH/PUT /productos/1 or /productos/1.json
   def update

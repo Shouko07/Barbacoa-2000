@@ -1,32 +1,52 @@
-<%= form_with(model: inventario) do |form| %>
-  <% if inventario.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(inventario.errors.count, "error") %> prohibited this inventario from being saved:</h2>
+<div class="formulario-container">
+  <%= form_with(model: inventario, local: true) do |form| %>
+    <% if inventario.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(inventario.errors.count, "error") %> errores impidieron guardar el inventario:</h2>
+        <ul>
+          <% inventario.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% inventario.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="row">
+      <h4>Información del Inventario</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :producto, placeholder: "Producto" %>
+        <div class="input-icon">
+          <i class="fa fa-box"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :cantidad, placeholder: "Cantidad" %>
+        <div class="input-icon">
+          <i class="fa fa-sort-numeric-up"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :tipo_almacenamiento, placeholder: "Tipo de Almacenamiento" %>
+        <div class="input-icon">
+          <i class="fa fa-warehouse"></i>
+        </div>
+      </div>
     </div>
+
+<div class="row">
+  <div class="input-group">
+    <%= form.submit "Guardar utileria", class: "btn-cafe" %>
+  </div>
+  <div class="input-group">
+    <%= link_to "Volver al inventario", inventarios_path, class: "btn-cafe" %>
+  </div>
+</div>
+
+
+
   <% end %>
 
-  <div>
-    <%= form.label :producto, style: "display: block" %>
-    <%= form.text_field :producto %>
-  </div>
-
-  <div>
-    <%= form.label :cantidad, style: "display: block" %>
-    <%= form.number_field :cantidad %>
-  </div>
-
-  <div>
-    <%= form.label :tipo_almacenamiento, style: "display: block" %>
-    <%= form.text_field :tipo_almacenamiento %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

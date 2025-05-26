@@ -1,16 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Selecciona una mesa" %>
 
-<% content_for :title, "Mesas" %>
-
-<h1>Mesas</h1>
-
-<div id="mesas">
-  <% @mesas.each do |mesa| %>
-    <%= render mesa %>
-    <p>
-      <%= link_to "Show this mesa", mesa %>
-    </p>
-  <% end %>
+<div class="cuadro-wrapper">
+            <table class="table table-striped table-hover">
+            <tbody>
+                <% @mesas.each do |mesa| %>
+                    <%= render mesa %>
+                <% end %>
+                </tbody>
+            </table>
 </div>
-
-<%= link_to "New mesa", new_mesa_path %>

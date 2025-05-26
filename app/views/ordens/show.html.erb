@@ -1,10 +1,20 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Ordenes" %>
 
-<%= render @orden %>
+<div class="container">
+<h2 style="text-align: center; font-size: 2rem;">
+  Orden para mesa <%= @orden.mesa.numero %>
+</h2>
+  <p style="text-align: center; font-size: 1rem;">Empleado asignado: <strong><%= @orden.empleado.nombre %> <%= @orden.empleado.apellido_paterno %></strong></p>
 
-<div>
-  <%= link_to "Edit this orden", edit_orden_path(@orden) %> |
-  <%= link_to "Back to ordens", ordens_path %>
-
-  <%= button_to "Destroy this orden", @orden, method: :delete %>
+  <div class="row">
+    <!-- Columna 1: Formulario -->
+    <%= render "tabla" %>
+    <!-- Columna 2: Tabla -->
+    <%= render "tabla2" %>
+  </div>
+  <% if @orden.estado_orden %>
+  <%= button_to "Cerrar Orden y Ver Reporte", cerrar_orden_path(@orden), method: :patch %>
+<% else %>
+  <p>Orden ya está cerrada.</p>
+<% end %>
 </div>

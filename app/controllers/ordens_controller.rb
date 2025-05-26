@@ -8,6 +8,8 @@ class OrdensController < ApplicationController
 
   # GET /ordens/1 or /ordens/1.json
   def show
+    @orden = Orden.find(params[:id])
+     @productos = Producto.all
   end
 
   # GET /ordens/new
@@ -56,7 +58,35 @@ class OrdensController < ApplicationController
       format.json { head :no_content }
     end
   end
+def cerrar
+  @orden = Orden.find(params[:id])
 
+  # Calcular total sumando cantidad * precio de los productos asociados
+  total_calculado = @orden.orden_productos.sum do |op|
+    op.cantidad * op.producto.precio
+  end
+
+  # Actualizar estado_orden y total
+  if @orden.update(estado_orden: false, total: total_calculado)
+    fecha = @orden.created_at.to_date
+
+    # Actualizar o crear reporte para esa fecha
+    reporte = Reporte.find_or_initialize_by(fecha: fecha)
+    reporte.total_ordenes = Orden.where(created_at: fecha.beginning_of_day..fecha.end_of_day).count
+    reporte.total_ventas = Orden.where(created_at: fecha.beginning_of_day..fecha.end_of_day).sum(:total)
+    reporte.save if reporte.changed?
+
+    redirect_to reporte_por_fecha_path(fecha: fecha), notice: "Orden cerrada y reporte actualizado."
+  else
+    redirect_back fallback_location: orden_path(@orden), alert: "No se pudo cerrar la orden."
+  end
+end
+
+
+  def detalle_compra
+    @orden = Orden.find(params[:id])
+    @productos = @orden.orden_productos.includes(:producto)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orden
