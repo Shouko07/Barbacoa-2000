@@ -1,7 +1,4 @@
 # README
-
-Esto es una prueba 2
-Esto es una prueba
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
