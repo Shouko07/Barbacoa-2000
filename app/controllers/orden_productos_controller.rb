@@ -17,4 +17,38 @@ class OrdenProductosController < ApplicationController
       redirect_to orden_path(@orden), alert: "No se pudo agregar el producto."
     end
   end
+def edit
+  @orden_producto = OrdenProducto.find(params[:id])
+  @orden = @orden_producto.orden
+  @empleados = Empleado.all
+end
+
+def update
+  @orden_producto = OrdenProducto.find(params[:id])
+  @orden = @orden_producto.orden
+
+  if @orden_producto.update(orden_producto_params) && @orden.update(empleado_id: params[:orden][:empleado_id])
+    redirect_to orden_path(@orden), notice: "OrdenProducto y empleado actualizados correctamente."
+  else
+    @empleados = Empleado.all
+    render :edit
+  end
+end
+
+private
+
+def orden_producto_params
+  params.require(:orden_producto).permit(:cantidad, :producto_id)
+end
+def destroy
+  @orden = Orden.find(params[:orden_id])
+  @orden_producto = @orden.orden_productos.find(params[:id])
+  @orden_producto.destroy
+  redirect_to orden_path(@orden), notice: "Producto eliminado correctamente."
+end
+private
+
+def orden_producto_params
+  params.require(:orden_producto).permit(:producto_id, :cantidad, :empleado_id)
+end
 end

@@ -1,84 +1,118 @@
-  <h1 class="text-center my-4">Registrar nuevo empleado</h1>
+<h1 class="text-center my-4">Registrar nuevo empleado</h1>
 <div class="formulario-container">
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="row">
-        <h4>Datos del usuario</h4>
+    <div class="row">
+      <h4>Datos del usuario</h4>
 
-        <div class="input-group input-group-icon">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
-          <div class="input-icon"><i class="fa fa-envelope"></i></div>
-        </div>
+      <div class="input-group input-group-icon">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.password_field :password, autocomplete: "new-password", placeholder: "Contraseña" %>
-          <div class="input-icon"><i class="fa fa-key"></i></div>
-        </div>
+      <div class="input-group input-group-icon">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Contraseña" %>
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+      </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmar contraseña" %>
-          <div class="input-icon"><i class="fa fa-key"></i></div>
+      <div class="input-group input-group-icon">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmar contraseña" %>
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+      </div>
+    </div>
+
+    <h4>Información Personal</h4>
+
+    <div class="input-group input-group-icon">
+      <%= f.text_field :nombre, placeholder: "Nombre" %>
+      <div class="input-icon"><i class="fa fa-user"></i></div>
+    </div>
+
+    <div class="input-group input-group-icon">
+      <%= f.text_field :apellido_paterno, placeholder: "Apellido paterno" %>
+      <div class="input-icon"><i class="fa fa-user"></i></div>
+    </div>
+
+    <div class="input-group input-group-icon">
+      <%= f.text_field :apellido_materno, placeholder: "Apellido materno" %>
+      <div class="input-icon"><i class="fa fa-user"></i></div>
+    </div>
+
+    <div class="input-group input-group-icon">
+      <%= f.text_field :puesto, placeholder: "Puesto" %>
+      <div class="input-icon"><i class="fa fa-briefcase"></i></div>
+    </div>
+
+    <div class="input-group input-group-icon">
+      <%= f.text_field :horario, placeholder: "Horario" %>
+      <div class="input-icon"> <i class='bx bx-calendar-week icon'></i></div>
+    </div>
+
+    <!-- RFC con botón de ejemplo -->
+    <div class="input-group" style="display: flex; align-items: center; gap: 0.5rem;">
+      <div style="flex: 1; position: relative;">
+        <%= f.text_field :rfc, placeholder: "RFC" %>
+        <div class="input-icon" style="right: 10px; top: 50%; transform: translateY(-50%); position: absolute;">
+          <i class="fa fa-id-card"></i>
         </div>
       </div>
-        <h4>Información Personal</h4>
-        <div class="input-group input-group-icon">
-          <%= f.text_field :nombre, placeholder: "Nombre" %>
-          <div class="input-icon"><i class="fa fa-user"></i></div>
-        </div>
+      <button type="button" id="btn-rfc-info" style="background-color:#603719; color:white; border:none; border-radius:5px; padding: 8px 12px; cursor: pointer;">
+        ¿Qué es el RFC?
+      </button>
+    </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.text_field :apellido_paterno, placeholder: "Apellido paterno" %>
-          <div class="input-icon"><i class="fa fa-user"></i></div>
-        </div>
+    <!-- Caja oculta con la explicación -->
+    <div id="rfc-info-box" style="display:none; background: #f5f5f5; border: 1px solid #ccc; padding: 12px; margin-top: 6px; border-radius: 5px; font-size: 0.9rem; color: #333;">
+      <strong>Ejemplo RFC:</strong> GODE561231GR8 <br>
+      <strong>¿Qué es el RFC?</strong> El Registro Federal de Contribuyentes (RFC) es una clave única que asigna el SAT para identificar a las personas físicas y morales en México.<br>
+      <strong>¿Cómo conseguirlo?</strong> Si aún no tienes RFC, puedes obtenerlo gratuitamente en el sitio oficial del SAT: <a href="https://www.sat.gob.mx/" target="_blank" rel="noopener" style="color:#603719; text-decoration: underline;">www.sat.gob.mx</a>
+    </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.text_field :apellido_materno, placeholder: "Apellido materno" %>
-          <div class="input-icon"><i class="fa fa-user"></i></div>
-        </div>
+    <div class="input-group input-group-icon">
+      <%= f.telephone_field :telefono, placeholder: "Teléfono" %>
+      <div class="input-icon"><i class="fa fa-phone"></i></div>
+    </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.text_field :puesto, placeholder: "Puesto" %>
-          <div class="input-icon"><i class="fa fa-briefcase"></i></div>
-        </div>
+    <div class="input-group input-group-icon">
+      <%= f.number_field :edad, placeholder: "Edad" %>
+      <div class="input-icon"><i class="fa fa-calendar"></i></div>
+    </div>
 
-        <div class="input-group input-group-icon">
-          <%= f.text_field :horario, placeholder: "Horario" %>
-          <div class="input-icon"> <i class='bx bx-calendar-week icon'></i></div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= f.text_field :rfc, placeholder: "RFC" %>
-          <div class="input-icon"><i class="fa fa-id-card"></i></div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= f.telephone_field :telefono, placeholder: "Teléfono" %>
-          <div class="input-icon"><i class="fa fa-phone"></i></div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= f.number_field :edad, placeholder: "Edad" %>
-          <div class="input-icon"><i class="fa fa-calendar"></i></div>
-        </div>
-        <div class="input-group input-group-icon">
-          <%= f.date_field :fecha_contratacion, placeholder: "Fecha de contratación" %>
-          <div class="input-icon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= f.file_field :profile_image %>
-          <div class="input-icon">
-            <i class="fa fa-image"></i>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <%= f.submit "Registrar", style: "background-color: #603719; color: white; padding: 10px 20px; border: none; border-radius: 5px;" %>
-        </div>
+    <div class="input-group input-group-icon">
+      <%= f.date_field :fecha_contratacion, placeholder: "Fecha de contratación" %>
+      <div class="input-icon">
+        <i class="fa fa-calendar"></i>
       </div>
-    <% end %>
+    </div>
+
+    <div class="input-group input-group-icon">
+      <%= f.file_field :profile_image %>
+      <div class="input-icon">
+        <i class="fa fa-image"></i>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <%= f.submit "Registrar", style: "background-color: #603719; color: white; padding: 10px 20px; border: none; border-radius: 5px;" %>
+    </div>
+  <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("btn-rfc-info");
+    const infoBox = document.getElementById("rfc-info-box");
+
+    btn.addEventListener("click", () => {
+      if (infoBox.style.display === "none" || infoBox.style.display === "") {
+        infoBox.style.display = "block";
+        btn.textContent = "Ocultar info RFC";
+      } else {
+        infoBox.style.display = "none";
+        btn.textContent = "¿Qué es el RFC?";
+      }
+    });
+  });
+</script>

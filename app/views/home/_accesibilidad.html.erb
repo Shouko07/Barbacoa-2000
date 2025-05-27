@@ -6,10 +6,10 @@
   </a>
 </li>
 <li class="nav-link">
-  <a href="#" id="lupa-toggle-btn" class="nav-link link-body-emphasis" style="cursor: pointer;">
+  <%= link_to "#", id: "magnifier-toggle", class: "nav-link link-body-emphasis", role: "button" do %>
     <i class='bx bx-search-alt-2 icon'></i>
     <span class="text nav-text">Lupa</span>
-  </a>
+  <% end %>
 </li>
 
 
@@ -37,22 +37,21 @@
 <li class="nav-link">
   <%= link_to "#", id: "aumentar-texto", class: "nav-link link-body-emphasis", role: "button" do %>
     <i class='bx bx-plus icon'></i>
-    <span class="text nav-text">Aumentar texto</span>
+        <span class="text nav-text">Mas</span>
+
+  <% end %>
+  <%= link_to "#", id: "disminuir-texto", class: "nav-link link-body-emphasis", role: "button" do %>
+    <i class='bx bx-minus icon'></i>
+    <span class="text nav-text">Menos</span>
+  <% end %>
+</li>
+<li class="nav-link">
+  <%= link_to "#", id: "dyslexia-toggle", class: "nav-link link-body-emphasis", role: "button" do %>
+    <i class='bx bx-book icon'></i>
+    <span class="text nav-text">Fuente dislexia</span>
   <% end %>
 </li>
 
-<li class="nav-link">
-  <%= link_to "#", id: "disminuir-texto", class: "nav-link link-body-emphasis", role: "button" do %>
-    <i class='bx bx-minus icon'></i>
-    <span class="text nav-text">Disminuir texto</span>
-  <% end %>
-</li>
-<li class="nav-link">
-  <%= link_to "#", id: "cursor-grande-btn", class: "nav-link link-body-emphasis", role: "button" do %>
-    <i class='bx bx-mouse-alt icon'></i>
-    <span class="text nav-text">Cursor Grande</span>
-  <% end %>
-</li>
 
         </li>
   <li class="nav-link">

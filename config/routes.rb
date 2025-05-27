@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
   get "orden_productos/create"
+
+  get "eventos/exportar_excel", to: "eventos#exportar_excel"
   resources :eventos
+    get "inventarios/exportar_excel", to: "inventarios#exportar_excel"
+
   resources :inventarios
+
 resources :ordens do
-  resources :orden_productos, only: [ :create ]
-    member do
+  resources :orden_productos, only: [ :create, :edit, :update, :destroy ]
+  member do
     patch "cerrar"
     get "detalle_compra"
   end
 end
+
+      get "productos/exportar_excel", to: "productos#exportar_excel"
 
   resources :productos
   resources :mesas do

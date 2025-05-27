@@ -19,12 +19,19 @@ document.addEventListener("turbo:load", () => {
   // Aplicar estado guardado al cargar la página
   toggleResaltado(resaltadoActivo);
 
+  // Restaurar estado visual del botón al cargar
+  if (resaltadoActivo) {
+    botonResaltar.parentElement.classList.add("activo");
+  } else {
+    botonResaltar.parentElement.classList.remove("activo");
+  }
+
   // Evento del botón
   botonResaltar.addEventListener("click", (e) => {
     e.preventDefault();
     resaltadoActivo = !resaltadoActivo;
     localStorage.setItem("resaltadoEnlaces", resaltadoActivo);
-    botonResaltar.parentElement.classList.toggle("activo");
+    botonResaltar.parentElement.classList.toggle("activo", resaltadoActivo);
     toggleResaltado(resaltadoActivo);
   });
 });

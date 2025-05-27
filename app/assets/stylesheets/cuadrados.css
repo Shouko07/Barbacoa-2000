@@ -22,7 +22,32 @@
   align-items: center;
   justify-content: center;
 }
+.cuadro-wrapper.cards-resumen {
+  display: flex;
+  flex-direction: column; /* Esto hace que estén una encima de la otra */
+  align-items: center;    /* Centra las cards horizontalmente */
+  gap: 2rem;              /* Espacio entre las cards */
+}
 
+.cuadro-wrapper.cards-resumen .cuadro-card {
+  width: 250px;           /* Ancho fijo o ajustable */
+  height: 300px;
+}
+
+
+.especial-wrapper .cuadro-card {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 2rem;
+    height: 200px;
+}
+
+.especial-wrapper .cuadro-card > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* Hover */
 .cuadro-card:hover {
@@ -41,7 +66,7 @@
 }
 
 .cuadro-card h2 {
-  font-size: 28px;
+  font-size: 1.75rem; /* 1.75 * 16px = 28px base */
 }
 
 .cuadro-card span {
@@ -62,4 +87,39 @@
   text-align: center;
   max-width: 200px;
   height: 250px;
+}
+/* Modo oscuro para cuadrados */
+/* filepath: c:\Users\USER\Barbacoa-2000\app\assets\stylesheets\cuadrados.css */
+body.dark .cuadro-wrapper {
+  color: #ccc;
+}
+
+body.dark .cuadro-card {
+  background-color: #242526;
+  color: #ccc;
+  box-shadow: 7px 7px 15px rgba(0,0,0,0.25);
+}
+
+body.dark .cuadro-card h5,
+body.dark .cuadro-card h2 {
+  color: #fff;
+}
+
+body.dark .cuadro-card span {
+  color: #aaa;
+}
+
+body.dark .especial-wrapper .cuadro-card {
+  background-color: #242526;
+  color: #ccc;
+}
+
+body.dark .empleado-card {
+  background-color: #242526;
+  color: #ccc;
+}
+
+body.dark .empleado-foto {
+  border: 2px solid #444;
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
 }

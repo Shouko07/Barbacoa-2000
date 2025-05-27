@@ -1,3 +1,5 @@
+
+
 class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
 
@@ -14,6 +16,38 @@ class EventosController < ApplicationController
   def new
     @evento = Evento.new
   end
+
+def exportar_excel
+  require "axlsx"
+
+  p = Axlsx::Package.new
+  wb = p.workbook
+
+  wb.add_worksheet(name: "Eventos") do |sheet|
+    # Encabezados
+    sheet.add_row [ "Nombre", "Descripción", "Ubicación", "Tipo", "Fecha", "Estado", "Cantidad pagada", "Creado", "Actualizado" ]
+
+    # Datos
+    Evento.all.each do |evento|
+      sheet.add_row [
+        evento.nombre,
+        evento.descripcion,
+        evento.ubicacion,
+        evento.tipo,
+        evento.fecha.strftime("%d/%m/%Y"),
+        evento.estado,
+        evento.cantidad_pagada,
+        evento.created_at.strftime("%d/%m/%Y %H:%M"),
+        evento.updated_at.strftime("%d/%m/%Y %H:%M")
+      ]
+    end
+  end
+
+  send_data p.to_stream.read,
+            filename: "eventos.xlsx",
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+end
+
 
   # GET /eventos/1/edit
   def edit

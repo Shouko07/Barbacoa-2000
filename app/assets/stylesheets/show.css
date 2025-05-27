@@ -469,3 +469,42 @@ body {
     transform: rotate(360deg) translate(-10px) rotate(-360deg);
   }
 }
+/* Modo oscuro para show */
+/* filepath: c:\Users\USER\Barbacoa-2000\app\assets\stylesheets\show.css */
+body.dark {
+  background: #18191a;
+  color: #ccc;
+}
+
+body.dark .profile-page .content {
+  background: #242526;
+  color: #ccc;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.15);
+}
+
+body.dark .profile-page .content__cover {
+  background: linear-gradient(150deg, #3a3b3c 20%, #25211d 100%);
+}
+
+body.dark .profile-page .content__avatar {
+  background-color: #3a3b3c;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.15);
+}
+
+body.dark .profile-page .content__actions a {
+  color: #fff;
+}
+
+body.dark .profile-page .content__actions a:hover:first-child {
+  background: #25211d;
+  color: #fff;
+}
+
+body.dark .profile-page .content__button .button {
+  background: linear-gradient(100deg, #3a3b3c 30%, #25211d 100%);
+  color: #fff;
+}
+
+body.dark .profile-page .bg div {
+  background: linear-gradient(150deg, #3a3b3c 20%, #25211d 100%);
+}

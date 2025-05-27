@@ -4,10 +4,9 @@
     <h1 style="margin: 0;">Órdenes del día <%= params[:fecha] %></h1>
     <%= link_to 'Volver al calendario', reportes_path, style: "padding: 0.5rem 1rem; background-color: #603719; color: white; border: 1px solid #603719; border-radius: 0.5rem; text-decoration: none; font-weight: 600; cursor: pointer;" %>
   </div>
-</br>
   <div style="margin-bottom: 1rem; min-height:120px; text-align: right;">
     <p style="margin: 0; font-weight: bold;">Total del día: <%= number_to_currency(@ordenes.sum(&:total)) %></p>
-  </div>
+  </div></br></br></br></br></br></br>
   <% if @ordenes.any? %>
     <table class="tabla">
       <thead>

@@ -9,29 +9,20 @@ document.addEventListener("turbo:load", () => {
 
   if (!searchInput || items.length === 0 || !hiddenProductoId || !cantidadInput || !form) return;
 
-  function showSelectedTag(name) {
-    selectedContainer.innerHTML = '';
+function showSelectedTag(name) {
+  selectedContainer.innerHTML = '';
 
-    const tag = document.createElement("span");
-    tag.style.display = "inline-flex";
-    tag.style.alignItems = "center";
-    tag.style.backgroundColor = "#0d6efd";
-    tag.style.color = "white";
-    tag.style.padding = "0.25rem 0.75rem";
-    tag.style.borderRadius = "1rem";
-    tag.style.fontWeight = "600";
-    tag.style.boxShadow = "0 2px 6px rgba(13, 110, 253, 0.4)";
-    tag.style.userSelect = "none";
-    tag.textContent = name;
+  const tag = document.createElement("span");
+  tag.className = "selected-product-tag";
+  tag.textContent = name;
 
-    const icon = document.createElement("span");
-    icon.textContent = "✓";
-    icon.style.marginLeft = "0.5rem";
-    icon.style.fontWeight = "bold";
+  const icon = document.createElement("span");
+  icon.style.marginLeft = "0.5rem";
+  icon.style.fontWeight = "bold";
 
-    tag.appendChild(icon);
-    selectedContainer.appendChild(tag);
-  }
+  tag.appendChild(icon);
+  selectedContainer.appendChild(tag);
+}
 
   // --- Variables para control de navegación por teclado ---
   let currentHighlightIndex = -1;  // índice del producto resaltado (-1 = ninguno)

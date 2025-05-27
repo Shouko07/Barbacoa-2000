@@ -1,10 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+    <div>
+      <h5>ID</h5>
+      <span><%= @inventario.id %></span>
+    </div>
+    <div>
+      <h5>Producto</h5>
+      <span><%= @inventario.producto %></span>
+    </div>
+    <div>
+      <h5>Cantidad</h5>
+      <span><%= @inventario.cantidad %></span>
+    </div>
+    <div>
+      <h5>Tipo almacenamiento</h5>
+      <span><%= @inventario.tipo_almacenamiento %></span>
+    </div>
+  </div>
+</div>
 
-<%= render @inventario %>
 
-<div>
-  <%= link_to "Edit this inventario", edit_inventario_path(@inventario) %> |
-  <%= link_to "Back to inventarios", inventarios_path %>
-
-  <%= button_to "Destroy this inventario", @inventario, method: :delete %>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+      <div>
+      <%= link_to "Editar inventario", edit_inventario_path(@inventario), class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= link_to "Volver a inventarios", inventarios_path, class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= button_to "Eliminar inventario ", @inventario, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn-cafe" %>
+    </div>
+  </div>
+  </div>
 </div>

@@ -13,7 +13,9 @@
     <%= render "tabla2" %>
   </div>
   <% if @orden.estado_orden %>
-  <%= button_to "Cerrar Orden y Ver Reporte", cerrar_orden_path(@orden), method: :patch %>
+<div style="text-align: center;">
+  <%= button_to "Cerrar Orden y Ver Reporte", cerrar_orden_path(@orden), method: :patch, class: "btn-cafe", form_class: "no-style-form" %>
+</div>
 <% else %>
   <p>Orden ya está cerrada.</p>
 <% end %>

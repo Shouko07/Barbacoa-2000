@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  background: linear-gradient(to top right, #7c89d5, #f599a5);
+  margin: 0;
+  padding: 0;
+}
+
+.graph {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 22px -8px #808080;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+.graph + .graph {
+  margin-left: 10px;
+  margin-top: 40px;
+}
+
+.stock {
+  margin-left: 20px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.stock-logo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 0 0 30px;
+  margin-right: 10px;
+}
+
+.stock-logo:before {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-color: #555;
+  transform: rotate(45deg);
+  border-radius: 7px;
+}
+
+.stock-logo.paperpillar:before {
+  background: linear-gradient(to top right, rgb(120,113,255), rgb(111,234,255));
+}
+
+.stock-logo i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.stock-info {
+  flex: 1;
+}
+
+.stock-name {
+  color: darkblue;
+  font-weight: 600;
+}
+
+.stock-fullname {
+  color: gray;
+  font-size: 10px;
+}
+
+.stock-value {
+  font-weight: bold;
+  color: gray;
+  font-size: 14px;
+}
+
+/* Para la segunda gráfica, cambio el fondo del logo */
+.graph:nth-of-type(2) .stock-logo {
+  background: linear-gradient(to top right, #32CD32, #90EE90);
+}
+
+.graph:nth-of-type(2) .stock-logo:before {
+  background: linear-gradient(to top right, #32CD32, #90EE90);
+}
+/* Modo oscuro para dashboard */
+/* filepath: c:\Users\USER\Barbacoa-2000\app\assets\stylesheets\dashboard.css */
+body.dark {
+  background: linear-gradient(to top right, #23243a, #3a3b3c);
+  color: #ccc;
+}
+
+body.dark .graph {
+  background-color: #242526;
+  box-shadow: 0px 0px 22px -8px #111;
+}
+
+body.dark .stock-logo:before {
+  background-color: #444;
+}
+
+body.dark .stock-logo.paperpillar:before {
+  background: linear-gradient(to top right, #7c89d5, #3a3b3c);
+}
+
+body.dark .stock-name {
+  color: #81d4fa;
+}
+
+body.dark .stock-fullname,
+body.dark .stock-value {
+  color: #ccc;
+}
+
+body.dark .graph:nth-of-type(2) .stock-logo,
+body.dark .graph:nth-of-type(2) .stock-logo:before {
+  background: linear-gradient(to top right, #388e3c, #23243a);
+}

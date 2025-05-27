@@ -97,3 +97,55 @@
 .tabla tr:nth-child(even) {
   background-color: var(--clr-gray150);
 }
+/* Modo oscuro para tabla */
+/* filepath: c:\Users\USER\Barbacoa-2000\app\assets\stylesheets\tabla.css */
+body.dark .wrapper {
+  background: #18191a;
+  color: #ccc;
+}
+
+body.dark .tabla {
+  background-color: #242526;
+  color: #ccc;
+  box-shadow: 0 5px 10px #111;
+}
+
+body.dark .tabla thead {
+  box-shadow: 0 5px 10px #111;
+}
+
+body.dark .tabla th,
+body.dark .tabla td {
+  color: #ccc;
+}
+
+body.dark .tabla th {
+  background-color: #242526;
+}
+
+body.dark .tabla tr:nth-child(even) {
+  background-color: #222;
+}
+
+body.dark .tabla a {
+  color: #81d4fa;
+}
+
+body.dark .tabla-status {
+  color: #fff;
+}
+
+body.dark .tabla-status-pending {
+  background-color: #a68b00;
+  color: #fff0c2;
+}
+
+body.dark .tabla-status-paid {
+  background-color: #388e3c;
+  color: #c8e6c9;
+}
+
+body.dark .tabla-status-unpaid {
+  background-color: #c62828;
+  color: #ffcdd2;
+}

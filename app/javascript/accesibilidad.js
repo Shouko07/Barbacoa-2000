@@ -15,12 +15,4 @@ document.addEventListener("turbo:load", () => {
     menu.style.display = "none";
     accesibilidad.style.display = "block";
   });
-    $(document).ready(function() {
-    $('.select2').select2({
-      placeholder: "Selecciona un producto",
-      allowClear: true,
-      width: '100%'
-    });
-  });
-  
 });

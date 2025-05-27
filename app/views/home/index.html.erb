@@ -1,3 +1,123 @@
-<div class="text">
-Hola Mundo
+<div style="display: flex; gap: 2rem; max-width: 1200px; margin: 0 auto;">
+<% content_for :title, "Dashboard" %>
+
+  <h1 class="text-center my-4">Dashboard</h1>
+  <!-- Izquierda: Cards verticales -->
+  <div class="cuadro-wrapper cards-resumen" style="
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  ">
+    <!-- Card eventos próximos -->
+    <div class="cuadro-card">
+      <div>
+        <h5>Eventos Próximos</h5>
+        <h2><%= @eventos_proximos_count %></h2>
+        <span>Próximos días</span>
+      </div>
+    </div>
+
+    <!-- Card mesas ocupadas -->
+    <div class="cuadro-card">
+      <div>
+        <h5>Mesas Ocupadas</h5>
+        <h2><%= @mesas_ocupadas_count %></h2>
+        <span>Actualmente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Derecha: Gráficos en columna -->
+  <div style="
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  ">
+    <div class="graph" style="width: 100%;">
+      <svg viewBox="0 0 300 100" width="100%" height="150">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7871ff;" />
+            <stop offset="100%" style="stop-color:#6feaff;" />
+          </linearGradient>
+        </defs>
+        <% puntos = []
+           max_y = @ganancias_por_dia.values.max || 1
+           dias = (6.days.ago.to_date..Date.today).to_a
+           dias.each_with_index do |dia, i|
+             valor = @ganancias_por_dia[dia] || 0
+             x = i * 40
+             y = 80 - (valor * 60 / max_y)
+             puntos << "#{x},#{y}"
+           end
+        %>
+        <polyline
+          fill="none"
+          stroke="url(#gradient)"
+          stroke-width="2"
+          points="<%= puntos.join(' ') %>"
+        />
+        <% puntos.each do |p| %>
+          <circle cx="<%= p.split(',')[0] %>" cy="<%= p.split(',')[1] %>" r="4" fill="#6feaff" />
+        <% end %>
+      </svg>
+      <div class="stock">
+        <div class="stock-logo paperpillar">
+          <i class="fa fa-inverse fa-angle-double-up"></i>
+        </div>
+        <div class="stock-info">
+          <div class="stock-name">Ganancias</div>
+          <div class="stock-fullname">Últimos 7 días</div>
+          <div class="stock-value">
+            <%= number_to_currency(@ordenes_semana.sum(&:total)) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="graph" style="width: 100%;">
+      <svg viewBox="0 0 300 100" width="100%" height="150">
+        <defs>
+          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#32CD32;" />
+            <stop offset="100%" style="stop-color:#90EE90;" />
+          </linearGradient>
+        </defs>
+        <% puntos_mes = []
+           max_y_mes = @ganancias_mes_por_dia.values.max || 1
+           dias_mes = (Time.current.beginning_of_month.to_date..Date.today).to_a
+           dias_mes.each_with_index do |dia, i|
+             valor = @ganancias_mes_por_dia[dia] || 0
+             x = i * 10
+             y = 80 - (valor * 60 / max_y_mes)
+             puntos_mes << "#{x},#{y}"
+           end
+        %>
+        <polyline
+          fill="none"
+          stroke="url(#gradient2)"
+          stroke-width="2"
+          points="<%= puntos_mes.join(' ') %>"
+        />
+        <% puntos_mes.each do |p| %>
+          <circle cx="<%= p.split(',')[0] %>" cy="<%= p.split(',')[1] %>" r="4" fill="#90EE90" />
+        <% end %>
+      </svg>
+      <div class="stock">
+        <div class="stock-logo" style="background: linear-gradient(to top right, #32CD32, #90EE90);">
+          <i class="fa fa-inverse fa-arrow-up"></i>
+        </div>
+        <div class="stock-info">
+          <div class="stock-name">Ganancias</div>
+          <div class="stock-fullname">Día a día Mes Actual</div>
+          <div class="stock-value">
+            <%= number_to_currency(@ordenes_mes.sum(&:total)) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

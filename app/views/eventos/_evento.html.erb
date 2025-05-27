@@ -1,37 +1,22 @@
-<div id="<%= dom_id evento %>">
-  <p>
-    <strong>Nombre:</strong>
-    <%= evento.nombre %>
-  </p>
 
-  <p>
-    <strong>Descripcion:</strong>
-    <%= evento.descripcion %>
-  </p>
-
-  <p>
-    <strong>Ubicacion:</strong>
-    <%= evento.ubicacion %>
-  </p>
-
-  <p>
-    <strong>Tipo:</strong>
-    <%= evento.tipo %>
-  </p>
-
-  <p>
-    <strong>Fecha:</strong>
-    <%= evento.fecha %>
-  </p>
-
-  <p>
-    <strong>Estado:</strong>
-    <%= evento.estado %>
-  </p>
-
-  <p>
-    <strong>Cantidad pagada:</strong>
-    <%= evento.cantidad_pagada %>
-  </p>
-
-</div>
+<tr>
+    <td class="text-center"><%= evento.id %></td>
+  <td class="text-center"><%= evento.nombre %></td>
+  <td class="text-center"><%= evento.descripcion %></td>
+  <td class="text-center"><%= evento.ubicacion %></td>
+    <td class="text-center"><%= evento.tipo %></td>
+  <td class="text-center"><%= evento.fecha %></td>
+  <td class="text-center"><%= evento.cantidad_pagada %></td>
+  <td>
+    <%= link_to evento, class: "settings", title: "Settings", data: { toggle: "tooltip" } do %>
+    <i class="material-icons">&#xE8B8;</i>
+  <% end %>
+<%= button_to evento_path(evento), method: :delete,
+      data: { turbo_confirm: '¿Estás seguro que quieres borrar este empleado?' },
+      form: { class: 'inline-form' },
+      class: 'btn-link',
+      title: 'Borrar',
+      data: { toggle: 'tooltip' } do %>
+  <i class="material-icons">&#xE5C9;</i>
+<% end %>  </td>
+</tr>

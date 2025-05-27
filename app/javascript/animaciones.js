@@ -20,12 +20,14 @@ document.addEventListener("turbo:load", () => {
   if (localStorage.getItem("animacionesReducidas") === "true") {
     document.body.classList.add("animaciones-reducidas");
     fijarTransform();
+    // Restaurar el estado visual del botón
+    btnAnimaciones.parentElement.classList.add("activo");
   }
 
   btnAnimaciones.addEventListener("click", (e) => {
     e.preventDefault();
     const activo = document.body.classList.toggle("animaciones-reducidas");
-    btnAnimaciones.parentElement.classList.toggle("activo");
+    btnAnimaciones.parentElement.classList.toggle("activo", activo);
 
     if (activo) {
       fijarTransform();
@@ -34,5 +36,7 @@ document.addEventListener("turbo:load", () => {
     }
 
     localStorage.setItem("animacionesReducidas", activo);
+    // Guardar el estado visual del botón
+    localStorage.setItem("btnAnimacionesActivo", activo);
   });
 });

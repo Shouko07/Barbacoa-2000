@@ -1,52 +1,76 @@
-<%= form_with(model: evento) do |form| %>
-  <% if evento.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(evento.errors.count, "error") %> prohibited this evento from being saved:</h2>
+<div class="formulario-container">
+  <%= form_with(model: evento, local: true) do |form| %>
+    <% if evento.errors.any? %>
+      <div style="color: red; margin-bottom: 1rem;">
+        <h2><%= pluralize(evento.errors.count, "error") %> errores impidieron guardar el evento:</h2>
+        <ul>
+          <% evento.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% evento.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="row">
+      <h4>Información del Evento</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :nombre, placeholder: "Nombre del Evento" %>
+        <div class="input-icon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :descripcion, placeholder: "Descripción" %>
+        <div class="input-icon">
+          <i class="fa fa-align-left"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :ubicacion, placeholder: "Ubicación" %>
+        <div class="input-icon">
+          <i class="fa fa-map-marker-alt"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :tipo, placeholder: "Tipo de Evento" %>
+        <div class="input-icon">
+          <i class="fa fa-tags"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.date_field :fecha %>
+        <div class="input-icon">
+          <i class="fa fa-clock"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :estado, placeholder: "Estado del Evento" %>
+        <div class="input-icon">
+          <i class="fa fa-flag"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :cantidad_pagada, placeholder: "Cantidad Pagada" %>
+        <div class="input-icon">
+          <i class="fa fa-dollar-sign"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <%= form.submit "Guardar evento", class: "btn-cafe" %>
+      </div>
+      <div class="input-group">
+        <%= link_to "Volver a eventos", eventos_path, class: "btn-cafe" %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :nombre, style: "display: block" %>
-    <%= form.text_field :nombre %>
-  </div>
-
-  <div>
-    <%= form.label :descripcion, style: "display: block" %>
-    <%= form.text_field :descripcion %>
-  </div>
-
-  <div>
-    <%= form.label :ubicacion, style: "display: block" %>
-    <%= form.text_field :ubicacion %>
-  </div>
-
-  <div>
-    <%= form.label :tipo, style: "display: block" %>
-    <%= form.text_field :tipo %>
-  </div>
-
-  <div>
-    <%= form.label :fecha, style: "display: block" %>
-    <%= form.date_field :fecha %>
-  </div>
-
-  <div>
-    <%= form.label :estado, style: "display: block" %>
-    <%= form.text_field :estado %>
-  </div>
-
-  <div>
-    <%= form.label :cantidad_pagada, style: "display: block" %>
-    <%= form.number_field :cantidad_pagada %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -83,7 +83,6 @@ background: #603719;
 background: -webkit-linear-gradient(to right, #603719, #834519);
 background: linear-gradient(to right, #603719, #834519);
 
-
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -118,4 +117,40 @@ background: linear-gradient(to right, #603719, #834519);
 .overlay-right {
 	right: 0;
 	transform: translateX(0);
+}
+/* Modo oscuro para signin */
+/* filepath: c:\Users\USER\Barbacoa-2000\app\assets\stylesheets\signin.css */
+body.dark .contenedor {
+  background-color: #18191a;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.45), 0 10px 10px rgba(0,0,0,0.35);
+}
+
+body.dark form {
+  background-color: #242526;
+  color: #ccc;
+}
+
+body.dark input {
+  background-color: #222;
+  color: #fff;
+}
+
+body.dark .form-container {
+  background-color: transparent;
+}
+
+body.dark .overlay {
+  background: linear-gradient(to right, #3a3b3c, #25211d);
+  color: #fff;
+}
+
+body.dark button,
+body.dark input.button {
+  background-color: #3a3b3c;
+  border: 1px solid #603719;
+  color: #fff;
+}
+
+body.dark .field label {
+  color: #ccc;
 }

@@ -18,7 +18,7 @@ $(document).ready(function(){
                         <i class="material-icons">&#xE147;</i>
                         <span>Agregar a inventario</span>
                       <% end %>
-                      <%= link_to empleados_path, class: "btn btn-primary" do %> 
+                      <%= link_to inventarios_exportar_excel_path, class: "btn btn-primary" do %>
                         <i class="material-icons">&#xE24D;</i>
                         <span>Exportar a Excel</span>
                       <% end %>
@@ -28,6 +28,7 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th class="text-center">#</th>
                         <th class="text-center">Producto</th>
                         <th class="text-center">Cantidad</th>
                         <th class="text-center">Tipo de almacenamiento</th>

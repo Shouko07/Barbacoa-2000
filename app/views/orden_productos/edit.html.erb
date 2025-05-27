@@ -1,0 +1,51 @@
+<div class="formulario-container">
+  <%= form_with model: [@orden, @orden_producto], local: true do |form| %>
+    <% if @orden_producto.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@orden_producto.errors.count, "error") %> errores impidieron guardar el producto:</h2>
+        <ul>
+          <% @orden_producto.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <h4>Editar Producto de la Orden</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :cantidad, placeholder: "Cantidad" %>
+        <div class="input-icon">
+          <i class="fa fa-sort-numeric-up"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.collection_select :producto_id, Producto.all, :id, :nombre, prompt: "Selecciona un producto" %>
+        <div class="input-icon">
+          <i class="fa fa-box"></i>
+        </div>
+      </div>
+
+      <!-- Select para editar empleado de la orden -->
+      <div class="input-group input-group-icon">
+        <%= select_tag "orden[empleado_id]",
+              options_from_collection_for_select(@empleados, :id, :nombre, @orden.empleado_id),
+              class: "form-select" %>
+        <div class="input-icon">
+          <i class="fa fa-user"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <%= form.submit "Actualizar", class: "btn-cafe" %>
+      </div>
+      <div class="input-group">
+        <%= link_to "Volver a la orden", orden_path(@orden), class: "btn-cafe" %>
+      </div>
+    </div>
+  <% end %>
+</div>

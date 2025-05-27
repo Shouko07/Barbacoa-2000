@@ -1,3 +1,4 @@
+
 class ProductosController < ApplicationController
   before_action :set_producto, only: %i[ show edit update destroy ]
 
@@ -29,6 +30,34 @@ class ProductosController < ApplicationController
   # GET /productos/1/edit
   def edit
   end
+
+  def exportar_excel
+  require "axlsx"
+
+  p = Axlsx::Package.new
+  wb = p.workbook
+
+  wb.add_worksheet(name: "Productos") do |sheet|
+    # Encabezados
+    sheet.add_row [ "Nombre", "Descripción", "Precio", "Creado", "Actualizado" ]
+
+    # Datos
+    Producto.all.each do |producto|
+      sheet.add_row [
+        producto.nombre,
+        producto.descripcion,
+        producto.precio.to_s,
+        producto.created_at.strftime("%d/%m/%Y %H:%M"),
+        producto.updated_at.strftime("%d/%m/%Y %H:%M")
+      ]
+    end
+  end
+
+  # Enviar archivo Excel como respuesta
+  send_data p.to_stream.read,
+            filename: "productos.xlsx",
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+end
 
   # POST /productos or /productos.json
   def create

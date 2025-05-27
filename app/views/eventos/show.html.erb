@@ -1,10 +1,65 @@
-<p style="color: green"><%= notice %></p>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+    <div>
+      <h5>ID</h5>
+      <span><%= @evento.id %></span>
+    </div>
+    <div>
+      <h5>Nombre</h5>
+      <span><%= @evento.nombre %></span>
+    </div>
+    <div>
+      <h5>Descripción</h5>
+      <span><%= @evento.descripcion %></span>
+    </div>
+    <div>
+      <h5>Ubicación</h5>
+      <span><%= @evento.ubicacion %></span>
+    </div>
+    <div>
+      <h5>Tipo</h5>
+      <span><%= @evento.tipo %></span>
+    </div>
+    <div>
+      <h5>Fecha</h5>
+      <span><%= @evento.fecha %></span>
+    </div>
+    <div>
+      <h5>Cantidad Pagada</h5>
+      <span><%= number_to_currency(@evento.cantidad_pagada) %></span>
+    </div>
+  </div>
+</div>
 
-<%= render @evento %>
+<!-- Mapa de Google Maps -->
+<% if @evento.ubicacion.present? %>
+  <div class="cuadro-wrapper especial-wrapper">
+    <div class="cuadro-card">
+      <h5>Mapa de la ubicación</h5>
+      <div style="width: 100%; height: 300px;">
+        <iframe
+          width="1000px"
+          height="100%"
+          frameborder="0"
+          style="border:0; border-radius: 10px;"
+          src="https://www.google.com/maps?q=<%= ERB::Util.url_encode(@evento.ubicacion) %>&output=embed"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+<% end %>
 
-<div>
-  <%= link_to "Edit this evento", edit_evento_path(@evento) %> |
-  <%= link_to "Back to eventos", eventos_path %>
-
-  <%= button_to "Destroy this evento", @evento, method: :delete %>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+    <div>
+      <%= link_to "Editar evento", edit_evento_path(@evento), class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= link_to "Volver a eventos", eventos_path, class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= button_to "Eliminar evento", @evento, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn-cafe" %>
+    </div>
+  </div>
 </div>

@@ -1,10 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+    <div>
+      <h5>ID</h5>
+      <span><%= @producto.id %></span>
+    </div>
+    <div>
+      <h5>Nombre</h5>
+      <span><%= @producto.nombre %></span>
+    </div>
+    <div>
+      <h5>Precio</h5>
+      <span><%= @producto.precio %></span>
+    </div>
+    <div>
+      <h5>Descripcion</h5>
+      <span><%= @producto.descripcion %></span>
+    </div>
+  </div>
+</div>
 
-<%= render @producto %>
 
-<div>
-  <%= link_to "Edit this producto", edit_producto_path(@producto) %> |
-  <%= link_to "Back to productos", productos_path %>
-
-  <%= button_to "Destroy this producto", @producto, method: :delete %>
+<div class="cuadro-wrapper especial-wrapper">
+  <div class="cuadro-card">
+      <div>
+      <%= link_to "Editar producto", edit_producto_path(@producto), class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= link_to "Volver a producto", productos_path, class: "btn-cafe" %>
+    </div>
+    <div>
+      <%= button_to "Eliminar producto ", @producto, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn-cafe" %>
+    </div>
+  </div>
+  </div>
 </div>

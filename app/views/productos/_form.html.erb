@@ -1,32 +1,48 @@
-<%= form_with(model: producto) do |form| %>
-  <% if producto.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(producto.errors.count, "error") %> prohibited this producto from being saved:</h2>
+<div class="formulario-container">
+  <%= form_with(model: producto, local: true) do |form| %>
+    <% if producto.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(producto.errors.count, "error") %> errores impidieron guardar el producto:</h2>
+        <ul>
+          <% producto.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% producto.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="row">
+      <h4>Información del Producto</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :nombre, placeholder: "Nombre del producto" %>
+        <div class="input-icon">
+          <i class="fa fa-tag"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :precio, placeholder: "Precio" %>
+        <div class="input-icon">
+          <i class="fa fa-dollar-sign"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :descripcion, placeholder: "Descripción" %>
+        <div class="input-icon">
+          <i class="fa fa-align-left"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <%= form.submit "Guardar producto", class: "btn-cafe" %>
+      </div>
+      <div class="input-group">
+        <%= link_to "Volver a productos", productos_path, class: "btn-cafe" %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :nombre, style: "display: block" %>
-    <%= form.text_field :nombre %>
-  </div>
-
-  <div>
-    <%= form.label :precio, style: "display: block" %>
-    <%= form.text_field :precio %>
-  </div>
-
-  <div>
-    <%= form.label :descripcion, style: "display: block" %>
-    <%= form.text_field :descripcion %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

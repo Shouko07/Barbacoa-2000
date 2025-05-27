@@ -1,3 +1,5 @@
+require "axlsx"
+
 class InventariosController < ApplicationController
   before_action :set_inventario, only: %i[ show edit update destroy ]
 
@@ -33,6 +35,35 @@ class InventariosController < ApplicationController
       end
     end
   end
+
+  def exportar_excel
+  p = Axlsx::Package.new
+  wb = p.workbook
+
+  wb.add_worksheet(name: "Inventario") do |sheet|
+    # Encabezados
+    sheet.add_row [
+      "Producto", "Cantidad", "Tipo de almacenamiento", "Creado", "Actualizado"
+    ]
+
+    # Datos
+    Inventario.all.each do |i|
+      sheet.add_row [
+        i.producto,
+        i.cantidad,
+        i.tipo_almacenamiento,
+        i.created_at.strftime("%d/%m/%Y %H:%M"),   # Fecha y hora formato día/mes/año
+        i.updated_at.strftime("%d/%m/%Y %H:%M")
+      ]
+    end
+  end
+      send_data p.to_stream.read,
+              filename: "producto.xlsx",
+              type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  # Para enviar o guardar el archivo, depende de tu uso:
+  # p.serialize('inventario.xlsx') # para guardar localmente
+  # o devolver el paquete para descargar
+end
 
   # PATCH/PUT /inventarios/1 or /inventarios/1.json
   def update

@@ -1,17 +1,18 @@
-<div id="<%= dom_id producto %>">
-  <p>
-    <strong>Nombre:</strong>
-    <%= producto.nombre %>
-  </p>
-
-  <p>
-    <strong>Precio:</strong>
-    <%= producto.precio %>
-  </p>
-
-  <p>
-    <strong>Descripcion:</strong>
-    <%= producto.descripcion %>
-  </p>
-
-</div>
+<tr>
+    <td class="text-center"><%= producto.id %></td>
+  <td class="text-center"><%= producto.nombre %></td>
+  <td class="text-center"><%= producto.descripcion %></td>
+  <td class="text-center"><%= producto.precio %></td>
+  <td>
+    <%= link_to producto, class: "settings", title: "Settings", data: { toggle: "tooltip" } do %>
+    <i class="material-icons">&#xE8B8;</i>
+  <% end %>
+<%= button_to producto_path(producto), method: :delete,
+      data: { turbo_confirm: '¿Estás seguro que quieres borrar este empleado?' },
+      form: { class: 'inline-form' },
+      class: 'btn-link',
+      title: 'Borrar',
+      data: { toggle: 'tooltip' } do %>
+  <i class="material-icons">&#xE5C9;</i>
+<% end %>  </td>
+</tr>
