@@ -1,7 +1,7 @@
 require "axlsx"
 
 class EmpleadosController < ApplicationController
-  before_action :set_empleado, only: %i[ show edit update destroy ]
+  before_action :set_empleado, only: %i[show edit update destroy]
 
   # GET /empleados or /empleados.json
   def index
@@ -23,6 +23,7 @@ class EmpleadosController < ApplicationController
 
   # POST /empleados or /empleados.json
   def create
+    preparar_horario_parametros
     @empleado = Empleado.new(empleado_params)
 
     respond_to do |format|
@@ -38,6 +39,7 @@ class EmpleadosController < ApplicationController
 
   # PATCH/PUT /empleados/1 or /empleados/1.json
   def update
+    preparar_horario_parametros
     respond_to do |format|
       if @empleado.update(empleado_params)
         format.html { redirect_to @empleado, notice: "Empleado was successfully updated." }
@@ -58,6 +60,7 @@ class EmpleadosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   # Export to Excel
   def exportar_excel
     p = Axlsx::Package.new
@@ -92,14 +95,29 @@ class EmpleadosController < ApplicationController
               filename: "empleados.xlsx",
               type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_empleado
-      @empleado = Empleado.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def empleado_params
-      params.expect(empleado: [ :email, :nombre, :apellido_materno, :apellido_paterno, :puesto, :horario, :rfc, :telefono, :edad, :fecha_contratacion, :profile_image, :profile_image_id ])
+  private
+
+  # Callback para cargar empleado por id
+  def set_empleado
+    @empleado = Empleado.find(params[:id])
+  end
+
+  # Para manejar el array horario de checkboxes y unirlo en un string separado por espacios
+  def preparar_horario_parametros
+    if params[:empleado] && params[:empleado][:horario].present?
+      params[:empleado][:horario] = params[:empleado][:horario].join(" ")
+    else
+      params[:empleado][:horario] = ""
     end
+  end
+
+  # Solo parámetros permitidos
+  def empleado_params
+    params.require(:empleado).permit(
+      :email, :nombre, :apellido_paterno, :apellido_materno,
+      :puesto, :rfc, :telefono, :edad, :fecha_contratacion, :profile_image,
+      :horario
+    )
+  end
 end

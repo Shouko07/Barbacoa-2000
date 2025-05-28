@@ -1,119 +1,127 @@
 <div class="formulario-container">
-    <%= form_with(model: empleado, local: true, html: { multipart: true }) do |form| %>
-      <% if empleado.errors.any? %>
-        <div style="color: red">
-          <h2><%= pluralize(empleado.errors.count, "error") %> prohibited this empleado from being saved:</h2>
-          <ul>
-            <% empleado.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="row">
-        <h4>Datos de Usuario</h4>
-
-        <div class="input-group input-group-icon">
-          <%= form.email_field :email, placeholder: "Email", autocomplete: "email" %>
-          <div class="input-icon">
-            <i class="fa fa-envelope"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.password_field :password, placeholder: "Contraseña", autocomplete: "new-password" %>
-          <div class="input-icon">
-            <i class="fa fa-key"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.password_field :password_confirmation, placeholder: "Confirmar Contraseña", autocomplete: "new-password" %>
-          <div class="input-icon">
-            <i class="fa fa-key"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <h4>Información Personal</h4>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :nombre, placeholder: "Nombre" %>
-          <div class="input-icon">
-            <i class="fa fa-user"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :apellido_paterno, placeholder: "Apellido Paterno" %>
-          <div class="input-icon">
-            <i class="fa fa-user"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :apellido_materno, placeholder: "Apellido Materno" %>
-          <div class="input-icon">
-            <i class="fa fa-user"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :puesto, placeholder: "Puesto" %>
-          <div class="input-icon">
-            <i class="fa fa-briefcase"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :horario, placeholder: "Horario" %>
-          <div class="input-icon">
-            <i class='bx bx-calendar-week icon'></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.text_field :rfc, placeholder: "RFC" %>
-          <div class="input-icon">
-            <i class="fa fa-id-card"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.telephone_field :telefono, placeholder: "Teléfono" %>
-          <div class="input-icon">
-            <i class="fa fa-phone"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.number_field :edad, placeholder: "Edad" %>
-          <div class="input-icon">
-            <i class="fa fa-hashtag"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.date_field :fecha_contratacion, placeholder: "Fecha de contratación" %>
-          <div class="input-icon">
-            <i class="fa fa-calendar"></i>
-          </div>
-        </div>
-
-        <div class="input-group input-group-icon">
-          <%= form.file_field :profile_image %>
-          <div class="input-icon">
-            <i class="fa fa-image"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-group">
-        <%= form.submit "Guardar cambios", class: "btn-cafe" %>
-        </div>
+  <%= form_with(model: empleado, local: true, html: { multipart: true }) do |form| %>
+    <% if empleado.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(empleado.errors.count, "error") %> prohibited this empleado from being saved:</h2>
+        <ul>
+          <% empleado.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
+
+    <div class="row">
+      <h4>Datos de Usuario</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.email_field :email, placeholder: "Email", autocomplete: "email" %>
+        <div class="input-icon">
+          <i class="fa fa-envelope"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.password_field :password, placeholder: "Contraseña", autocomplete: "new-password" %>
+        <div class="input-icon">
+          <i class="fa fa-key"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.password_field :password_confirmation, placeholder: "Confirmar Contraseña", autocomplete: "new-password" %>
+        <div class="input-icon">
+          <i class="fa fa-key"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h4>Información Personal</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :nombre, placeholder: "Nombre" %>
+        <div class="input-icon">
+          <i class="fa fa-user"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :apellido_paterno, placeholder: "Apellido Paterno" %>
+        <div class="input-icon">
+          <i class="fa fa-user"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :apellido_materno, placeholder: "Apellido Materno" %>
+        <div class="input-icon">
+          <i class="fa fa-user"></i>
+        </div>
+      </div>
+
+      <!-- Selector Puesto -->
+      <div class="input-group input-group-icon">
+        <%= form.select :puesto, options_for_select(["Mesero", "Gerente", "Cocina", "Garrotero"], empleado.puesto), {}, class: "form-select" %>
+        <div class="input-icon">
+          <i class="fa fa-briefcase"></i>
+        </div>
+      </div>
+
+      <!-- Checkbox Horario -->
+      <div class="input-group input-group-icon">
+<label style="visibility: hidden;">Horario</label><br/>
+        <% ["Viernes", "Sábado", "Domingo"].each do |dia| %>
+          <label style="margin-right: 10px;">
+            <%= check_box_tag "empleado[horario][]", dia, empleado.horario.to_s.split(" ").include?(dia) %>
+            <%= dia %>
+          </label>
+        <% end %>
+        <div class="input-icon">
+          <i class='bx bx-calendar-week icon'></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.text_field :rfc, placeholder: "RFC" %>
+        <div class="input-icon">
+          <i class="fa fa-id-card"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.telephone_field :telefono, placeholder: "Teléfono" %>
+        <div class="input-icon">
+          <i class="fa fa-phone"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :edad, placeholder: "Edad" %>
+        <div class="input-icon">
+          <i class="fa fa-hashtag"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.date_field :fecha_contratacion, placeholder: "Fecha de contratación" %>
+        <div class="input-icon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.file_field :profile_image %>
+        <div class="input-icon">
+          <i class="fa fa-image"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <%= form.submit "Guardar cambios", class: "btn-cafe" %>
+      </div>
+    </div>
+  <% end %>
 </div>

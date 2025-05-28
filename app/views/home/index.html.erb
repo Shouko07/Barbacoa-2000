@@ -1,15 +1,30 @@
-<div style="display: flex; gap: 2rem; max-width: 1200px; margin: 0 auto;">
-<% content_for :title, "Dashboard" %>
+<div class="formulario-container-3">
 
-  <h1 class="text-center my-4">Dashboard</h1>
-  <!-- Izquierda: Cards verticales -->
+<h1 class="text-center my-4 encabezado-barbacoa">Barbacoa 2000</h1>
+</div>
+<br />
+
+<% content_for :title, "Barbacoa 2000" %>
+
+<div class="formulario-container-2" style="display: flex; gap: 4rem; max-width: 1500px; margin: 0 auto;">
+  <!-- Izquierda: Imagen -->
+  <div class="cuadro-wrapper cards-resumen" style="
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  ">
+    <%= image_tag "Barbacoa.png", alt: "Imagen por defecto", class: "avatar", style: "width: 400px; height: 400px;" %>
+  </div>
+
+  <!-- Medio: Cards verticales -->
   <div class="cuadro-wrapper cards-resumen" style="
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 2rem;
   ">
-    <!-- Card eventos próximos -->
     <div class="cuadro-card">
       <div>
         <h5>Eventos Próximos</h5>
@@ -18,7 +33,6 @@
       </div>
     </div>
 
-    <!-- Card mesas ocupadas -->
     <div class="cuadro-card">
       <div>
         <h5>Mesas Ocupadas</h5>
@@ -28,13 +42,14 @@
     </div>
   </div>
 
-  <!-- Derecha: Gráficos en columna -->
+  <!-- Derecha: Gráficos -->
   <div style="
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 3rem;
   ">
+    <!-- Gráfico: Últimos 7 días -->
     <div class="graph" style="width: 100%;">
       <svg viewBox="0 0 300 100" width="100%" height="150">
         <defs>
@@ -77,6 +92,7 @@
       </div>
     </div>
 
+    <!-- Gráfico: Día a día del mes actual -->
     <div class="graph" style="width: 100%;">
       <svg viewBox="0 0 300 100" width="100%" height="150">
         <defs>
@@ -119,5 +135,4 @@
       </div>
     </div>
   </div>
-
 </div>

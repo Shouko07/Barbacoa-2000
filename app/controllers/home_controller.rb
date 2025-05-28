@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @eventos_proximos_count = Evento.where("fecha >= ?", Date.today).count
+    @eventos_proximos_count = Evento.where(estado: "Activo").count
 
     # Asumiendo que 'disponibilidad' tiene valor 'ocupada' para mesas ocupadas
-    @mesas_ocupadas_count = Mesa.where(disponibilidad: "Disponible").count
+    @mesas_ocupadas_count = Mesa.where(disponibilidad: "Ocupada").count
 
     @ordenes_semana = Orden.where(created_at: 6.days.ago.beginning_of_day..Time.current.end_of_day)
     @ganancias_por_dia = @ordenes_semana.group_by { |o| o.created_at.to_date }

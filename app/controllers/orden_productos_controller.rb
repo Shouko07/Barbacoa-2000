@@ -35,11 +35,7 @@ def update
   end
 end
 
-private
 
-def orden_producto_params
-  params.require(:orden_producto).permit(:cantidad, :producto_id)
-end
 def destroy
   @orden = Orden.find(params[:orden_id])
   @orden_producto = @orden.orden_productos.find(params[:id])

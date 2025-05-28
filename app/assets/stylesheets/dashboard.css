@@ -9,6 +9,15 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Color normal (modo claro) */
+.encabezado-barbacoa {
+  color: #603719;
+}
+
+/* Color para modo oscuro */
+body.dark .encabezado-barbacoa {
+  color: #ffffff;
+}
 
 .graph {
   display: inline-block;

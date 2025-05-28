@@ -35,12 +35,13 @@
         </div>
       </div>
 
-      <div class="input-group input-group-icon">
-        <%= form.text_field :tipo, placeholder: "Tipo de Evento" %>
-        <div class="input-icon">
-          <i class="fa fa-tags"></i>
-        </div>
-      </div>
+<div class="input-group input-group-icon">
+  <%= form.select :tipo, options_for_select([['Vuelta y vuelta', 'Vuelta y vuelta'], ['Barbacoa', 'Barbacoa']], selected: evento.tipo), prompt: "Selecciona tipo" %>
+  <div class="input-icon">
+    <i class="fa fa-tags"></i>
+  </div>
+</div>
+
 
       <div class="input-group input-group-icon">
         <%= form.date_field :fecha %>
@@ -49,12 +50,8 @@
         </div>
       </div>
 
-      <div class="input-group input-group-icon">
-        <%= form.text_field :estado, placeholder: "Estado del Evento" %>
-        <div class="input-icon">
-          <i class="fa fa-flag"></i>
-        </div>
-      </div>
+      <%= form.hidden_field :estado, value: "Activo" %>
+
 
       <div class="input-group input-group-icon">
         <%= form.number_field :cantidad_pagada, placeholder: "Cantidad Pagada" %>
