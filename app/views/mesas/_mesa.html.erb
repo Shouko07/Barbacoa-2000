@@ -9,6 +9,11 @@
         <span>Capacidad: <b><%= mesa.capacidad %></b></span>
       </h2>
       <p><span style="color: green;">Disponible</span></p>
+          <% if empleado_signed_in? %>
+
+        <%= link_to "Editar", edit_mesa_path(mesa), class: "btn-cafe", style: "margin-left: 1rem; font-size: 0.9rem;" %>
+         <% end %>
+
     </label>
   <% end %>
 
@@ -21,6 +26,11 @@
         <span>Capacidad: <b><%= mesa.capacidad %></b></span>
       </h2>
       <p><span style="color: red;">Ocupada</span></p>
+          <% if empleado_signed_in? %>
+
+        <%= link_to "Editar", edit_mesa_path(mesa), class: "btn-cafe", style: "margin-left: 1rem; font-size: 0.9rem;" %>
+         <% end %>
+
     </label>
   <% end %>
 <% end %>

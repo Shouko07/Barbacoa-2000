@@ -2,11 +2,19 @@
 <tr>
     <td class="text-center"><%= evento.id %></td>
   <td class="text-center"><%= evento.nombre %></td>
+  <td class="text-center"><%= evento.cliente %></td>
+  <td class="text-center"><%= evento.telefono %></td>
   <td class="text-center"><%= evento.descripcion %></td>
   <td class="text-center"><%= evento.ubicacion %></td>
     <td class="text-center"><%= evento.tipo %></td>
   <td class="text-center"><%= evento.fecha %></td>
   <td class="text-center"><%= evento.cantidad_pagada %></td>
+  <td class="text-center">
+    <% if evento.estado == "Activo" %>
+      <p><span style="color: green;">Activo</span></p>
+    <% else %>
+      <p><span style="color: red;">Cerrado</span></p>
+    <% end %>
   <td>
     <%= link_to evento, class: "settings", title: "Settings", data: { toggle: "tooltip" } do %>
     <i class="material-icons">&#xE8B8;</i>

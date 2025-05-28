@@ -2,7 +2,7 @@
 
 class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_empleado!, only: [ :edit, :update, :destroy, :new, :show ]
   # GET /eventos or /eventos.json
   def index
     @eventos = Evento.all
@@ -11,7 +11,17 @@ class EventosController < ApplicationController
   # GET /eventos/1 or /eventos/1.json
   def show
   end
+  def cerrar
+  @evento = Evento.find(params[:id])
+  @evento.update(estado: "Cerrado")
+  redirect_to @evento, notice: "El evento ha sido cerrado."
+  end
 
+def abrir
+  @evento = Evento.find(params[:id])
+  @evento.update(estado: "Activo")
+  redirect_to @evento, notice: "El evento ha sido reabierto."
+end
   # GET /eventos/new
   def new
     @evento = Evento.new
@@ -23,25 +33,27 @@ def exportar_excel
   p = Axlsx::Package.new
   wb = p.workbook
 
-  wb.add_worksheet(name: "Eventos") do |sheet|
-    # Encabezados
-    sheet.add_row [ "Nombre", "Descripción", "Ubicación", "Tipo", "Fecha", "Estado", "Cantidad pagada", "Creado", "Actualizado" ]
+wb.add_worksheet(name: "Eventos") do |sheet|
+  # Encabezados
+  sheet.add_row [ "Nombre", "Descripción", "Ubicación", "Tipo", "Fecha", "Estado", "Cantidad pagada", "Cliente", "Teléfono", "Creado", "Actualizado" ]
 
-    # Datos
-    Evento.all.each do |evento|
-      sheet.add_row [
-        evento.nombre,
-        evento.descripcion,
-        evento.ubicacion,
-        evento.tipo,
-        evento.fecha.strftime("%d/%m/%Y"),
-        evento.estado,
-        evento.cantidad_pagada,
-        evento.created_at.strftime("%d/%m/%Y %H:%M"),
-        evento.updated_at.strftime("%d/%m/%Y %H:%M")
-      ]
-    end
+  # Datos
+  Evento.all.each do |evento|
+    sheet.add_row [
+      evento.nombre,
+      evento.descripcion,
+      evento.ubicacion,
+      evento.tipo,
+      evento.fecha.strftime("%d/%m/%Y"),
+      evento.estado,
+      evento.cantidad_pagada,
+      evento.cliente,
+      evento.telefono,
+      evento.created_at.strftime("%d/%m/%Y %H:%M"),
+      evento.updated_at.strftime("%d/%m/%Y %H:%M")
+    ]
   end
+end
 
   send_data p.to_stream.read,
             filename: "eventos.xlsx",
@@ -97,8 +109,8 @@ end
       @evento = Evento.find(params.expect(:id))
     end
 
-    # Only allow a list of trusted parameters through.
-    def evento_params
-      params.expect(evento: [ :nombre, :descripcion, :ubicacion, :tipo, :fecha, :estado, :cantidad_pagada ])
-    end
+# Only allow a list of trusted parameters through.
+def evento_params
+  params.require(:evento).permit(:nombre, :descripcion, :ubicacion, :tipo, :fecha, :estado, :cantidad_pagada, :cliente, :telefono)
+end
 end

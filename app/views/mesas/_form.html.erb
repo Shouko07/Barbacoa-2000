@@ -1,36 +1,53 @@
-<%= form_with(model: mesa) do |form| %>
-  <% if mesa.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(mesa.errors.count, "error") %> prohibited this mesa from being saved:</h2>
+<!-- filepath: c:\Users\USER\Barbacoa-2000\app\views\mesas\_form.html.erb -->
+<div class="formulario-container">
+  <%= form_with(model: mesa, local: true) do |form| %>
+    <% if mesa.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(mesa.errors.count, "error") %> errores impidieron guardar la mesa:</h2>
+        <ul>
+          <% mesa.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-        <% mesa.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div class="row">
+      <h4>Información de la Mesa</h4>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :numero, placeholder: "Número de mesa" %>
+        <div class="input-icon">
+          <i class="fa fa-hashtag"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <% if mesa.new_record? %>
+          <%= form.text_field :disponibilidad, disabled: true, placeholder: "Disponible" %>
+        <% else %>
+          <%= form.text_field :disponibilidad, placeholder: "Disponibilidad" %>
         <% end %>
-      </ul>
+        <div class="input-icon">
+          <i class="fa fa-check-circle"></i>
+        </div>
+      </div>
+
+      <div class="input-group input-group-icon">
+        <%= form.number_field :capacidad, placeholder: "Capacidad" %>
+        <div class="input-icon">
+          <i class="fa fa-users"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-group">
+        <%= form.submit "Guardar mesa", class: "btn-cafe" %>
+      </div>
+      <div class="input-group">
+        <%= link_to "Volver a mesas", mesas_path, class: "btn-cafe" %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :numero, style: "display: block" %>
-    <%= form.number_field :numero %>
-  </div>
-
-  <div>
-    <%= form.label :disponibilidad, style: "display: block" %>
-    <% if mesa.new_record? %>
-      <%= form.text_field :disponibilidad, disabled: true, placeholder: "Disponible" %>
-    <% else %>
-      <%= form.text_field :disponibilidad %>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.label :capacidad, style: "display: block" %>
-    <%= form.number_field :capacidad %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

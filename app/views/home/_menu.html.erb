@@ -19,6 +19,7 @@
                 <span class="text nav-text">Eventos</span>
             <% end %>
         </li>
+            <% if empleado_signed_in? %>
 
         <li class="nav-link">
             <%= link_to productos_path, class: "nav-link link-body-emphasis" do %>
@@ -45,11 +46,13 @@
                 <span class="text nav-text">Reportes</span>
             <% end %>
         </li>
+            <% end %>
   <li class="nav-link">
     <a href="#" id="show-accesibilidad-btn" class="nav-link link-body-emphasis" style="cursor: pointer;">
       <i class='bx bx-accessibility icon'></i>
       <span class="text nav-text">Accesibilidad</span>
     </a>
   </li>
+
 
 

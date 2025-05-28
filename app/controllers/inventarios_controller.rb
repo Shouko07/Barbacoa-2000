@@ -1,6 +1,7 @@
 require "axlsx"
 
 class InventariosController < ApplicationController
+  before_action :authenticate_empleado!
   before_action :set_inventario, only: %i[ show edit update destroy ]
 
   # GET /inventarios or /inventarios.json

@@ -1,6 +1,7 @@
 require "axlsx"
 
 class EmpleadosController < ApplicationController
+  before_action :authenticate_empleado!
   before_action :set_empleado, only: %i[show edit update destroy]
 
   # GET /empleados or /empleados.json

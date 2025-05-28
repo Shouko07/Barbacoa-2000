@@ -34,7 +34,19 @@
           <i class="fa fa-map-marker-alt"></i>
         </div>
       </div>
+        <div class="input-group input-group-icon">
+  <%= form.text_field :cliente, placeholder: "Cliente" %>
+  <div class="input-icon">
+    <i class="fa fa-user"></i>
+  </div>
+</div>
 
+<div class="input-group input-group-icon">
+  <%= form.text_field :telefono, placeholder: "Teléfono" %>
+  <div class="input-icon">
+    <i class="fa fa-phone"></i>
+  </div>
+</div>
 <div class="input-group input-group-icon">
   <%= form.select :tipo, options_for_select([['Vuelta y vuelta', 'Vuelta y vuelta'], ['Barbacoa', 'Barbacoa']], selected: evento.tipo), prompt: "Selecciona tipo" %>
   <div class="input-icon">

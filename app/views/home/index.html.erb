@@ -6,7 +6,7 @@
 
 <% content_for :title, "Barbacoa 2000" %>
 
-<div class="formulario-container-2" style="display: flex; gap: 4rem; max-width: 1500px; margin: 0 auto;">
+<div class="formulario-container-2" style="display: flex; gap: 4rem; max-width: 1500px; margin: 0 auto; border-radius: 18px; padding: 2rem;">
   <!-- Izquierda: Imagen -->
   <div class="cuadro-wrapper cards-resumen" style="
     flex: 1;
@@ -19,28 +19,33 @@
   </div>
 
   <!-- Medio: Cards verticales -->
-  <div class="cuadro-wrapper cards-resumen" style="
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  ">
-    <div class="cuadro-card">
+<!-- filepath: c:\Users\USER\Barbacoa-2000\app\views\home\index.html.erb -->
+<div class="cuadro-wrapper cards-resumen" style="
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+">
+  <%= link_to eventos_path, style: "text-decoration: none; color: inherit;" do %>
+    <div class="cuadro-card" style="cursor: pointer;">
       <div>
         <h5>Eventos Próximos</h5>
         <h2><%= @eventos_proximos_count %></h2>
         <span>Próximos días</span>
       </div>
     </div>
+  <% end %>
 
-    <div class="cuadro-card">
+  <%= link_to mesas_path, style: "text-decoration: none; color: inherit;" do %>
+    <div class="cuadro-card" style="cursor: pointer;">
       <div>
         <h5>Mesas Ocupadas</h5>
         <h2><%= @mesas_ocupadas_count %></h2>
         <span>Actualmente</span>
       </div>
     </div>
-  </div>
+  <% end %>
+</div>
 
   <!-- Derecha: Gráficos -->
   <div style="

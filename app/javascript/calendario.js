@@ -88,4 +88,61 @@ document.addEventListener("turbo:load", () => {
     actualizarDatosDelDia();
     setInterval(actualizarDatosDelDia, 1000);
   }
+  const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+
+  let hoy = new Date();
+  let anio = hoy.getFullYear();
+  let mes = hoy.getMonth(); // 0-indexed
+
+  const anioActual = document.getElementById("anio-actual");
+  const anioMenos = document.getElementById("anio-menos");
+  const anioMas = document.getElementById("anio-mas");
+  const mesActual = document.getElementById("mes-actual");
+  const mesMenos = document.getElementById("mes-menos");
+  const mesMas = document.getElementById("mes-mas");
+
+  function actualizarVista() {
+    anioActual.textContent = anio;
+    mesActual.textContent = meses[mes].charAt(0).toUpperCase() + meses[mes].slice(1) + " " + anio;
+  }
+
+  anioMenos.addEventListener("click", () => {
+    anio--;
+    actualizarVista();
+  });
+
+  anioMas.addEventListener("click", () => {
+    anio++;
+    actualizarVista();
+  });
+
+  mesMenos.addEventListener("click", () => {
+    mes--;
+    if (mes < 0) {
+      mes = 11;
+      anio--;
+    }
+    actualizarVista();
+  });
+
+  mesMas.addEventListener("click", () => {
+    mes++;
+    if (mes > 11) {
+      mes = 0;
+      anio++;
+    }
+    actualizarVista();
+  });
+
+  mesActual.addEventListener("click", () => {
+    // Redirige al reporte del mes seleccionado
+    const mesStr = (mes + 1).toString().padStart(2, "0");
+    window.location.href = `/reportes/por_mes/${anio}-${mesStr}`;
+  });
+
+  actualizarVista();
+
 });

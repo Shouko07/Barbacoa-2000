@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   get "orden_productos/create"
 
   get "eventos/exportar_excel", to: "eventos#exportar_excel"
-  resources :eventos
+  resources :eventos do
+  member do
+    patch :cerrar
+    patch :abrir
+  end
+end
     get "inventarios/exportar_excel", to: "inventarios#exportar_excel"
 
   resources :inventarios
@@ -23,14 +28,16 @@ end
   end
   get "productos/search", to: "productos#search"
 
-  devise_for :empleados
-    get "empleados/exportar_excel", to: "empleados#exportar_excel"
+devise_for :empleados, controllers: { registrations: "empleados/registrations" }
+get "empleados/exportar_excel", to: "empleados#exportar_excel"
 
     resources :empleados
 
-
+  get "reportes/por_mes_excel(/:mes)", to: "reportes#por_mes_excel", as: :reportes_por_mes_excel
+  get "reportes/por_fecha_excel/:fecha", to: "reportes#por_fecha_excel", as: :reportes_por_fecha_excel
   resources :reportes, only: [ :index ]
   get "reportes/por_fecha/:fecha", to: "reportes#por_fecha", as: "reporte_por_fecha"
+  get "reportes/por_mes(/:mes)", to: "reportes#por_mes", as: :reportes_por_mes
 
   get "home/dashboard"
   root "home#index"

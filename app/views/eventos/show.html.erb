@@ -9,6 +9,14 @@
       <span><%= @evento.nombre %></span>
     </div>
     <div>
+  <h5>Cliente</h5>
+  <span><%= @evento.cliente %></span>
+</div>
+<div>
+  <h5>Teléfono</h5>
+  <span><%= @evento.telefono %></span>
+</div>
+    <div>
       <h5>Descripción</h5>
       <span><%= @evento.descripcion %></span>
     </div>
@@ -58,8 +66,17 @@
     <div>
       <%= link_to "Volver a eventos", eventos_path, class: "btn-cafe" %>
     </div>
+    <!-- filepath: c:\Users\USER\Barbacoa-2000\app\views\eventos\show.html.erb -->
+<div>
+  <% if @evento.estado == "Activo" %>
+    <%= button_to "Cerrar evento", cerrar_evento_path(@evento), method: :patch, class: "btn-cafe", data: { confirm: "¿Seguro que deseas cerrar este evento?" } %>
+  <% else %>
+    <%= button_to "Reabrir evento", abrir_evento_path(@evento), method: :patch, class: "btn-cafe", data: { confirm: "¿Seguro que deseas reabrir este evento?" } %>
+  <% end %>
+</div>
     <div>
-      <%= button_to "Eliminar evento", @evento, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn-cafe" %>
-    </div>
+<!-- filepath: c:\Users\USER\Barbacoa-2000\app\views\eventos\show.html.erb -->
+<%= button_to "Eliminar evento", @evento, method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn-cafe", style: "background-color: #c0392b; color: white;" %>    </div>
+    
   </div>
 </div>

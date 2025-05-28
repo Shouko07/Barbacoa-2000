@@ -1,0 +1,76 @@
+<!-- filepath: c:\Users\USER\Barbacoa-2000\app\views\reportes\por_mes.erb -->
+<div class="wrapper">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+    <h1 style="margin: 0;">Resumen del mes <%= @mes %></h1>
+    <%= link_to 'Volver al calendario', reportes_path, style: "padding: 0.5rem 1rem; background-color: #603719; color: white; border: 1px solid #603719; border-radius: 0.5rem; text-decoration: none; font-weight: 600; cursor: pointer;" %>
+  <%= link_to "Exportar a Excel", reportes_por_mes_excel_path(@mes), class: "btn-cafe" %>
+
+  </div>
+  <div style="margin-bottom: 1rem; min-height:120px; text-align: right;">
+    <p style="margin: 0; font-weight: bold;">Total del mes: <%= number_to_currency(@dias.sum { |d| d.total_dia.to_f }) %></p>
+  </div>
+
+  <div style="display: flex; gap: 2rem; align-items: flex-start; justify-content: center;">
+    <!-- Tabla de dinero (izquierda) -->
+    <div style="flex: 1; min-width: 320px;">
+      <h2>Resumen mensual</h2>
+      <% if @dias.any? %>
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Día</th>
+              <th>Total del mes</th>
+              <th>Órdenes</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @dias.each_with_index do |dia, idx| %>
+              <tr>
+                <td><%= idx + 1 %></td>
+                <td><%= Date.parse(dia.dia).strftime("%d/%m/%Y") %></td>
+                <td class="tabla-amount"><%= number_to_currency(dia.total_dia) %></td>
+                <td><%= dia.cantidad_ordenes %></td>
+                <td>
+                  <%= link_to "Ver reporte del día", reporte_por_fecha_path(fecha: Date.parse(dia.dia).strftime("%Y-%m-%d")) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No hay órdenes para este mes.</p>
+      <% end %>
+    </div>
+
+    <!-- Tabla de productos (derecha) -->
+    <div style="flex: 1; min-width: 320px;">
+      <h2>Consumo de productos en el mes</h2>
+      <% if @productos_consumidos.any? %>
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad consumida</th>
+                        <th>Total ganado</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <% @productos_consumidos.each do |prod| %>
+              <tr>
+                <td><%= prod.nombre %></td>
+                <td><%= prod.total_cantidad %></td>
+                            <td><%= number_to_currency(prod.total_dinero) %></td>
+
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>No hay consumo de productos en este mes.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
