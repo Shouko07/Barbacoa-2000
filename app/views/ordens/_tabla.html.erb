@@ -17,7 +17,7 @@
                  id="product-search"
                  class="form-control"
                  placeholder="Buscar producto...">
-          <ul id="product-list" class="list-group mt-1" style="max-height: 200px; overflow-y: auto; display: none;">
+          <ul id="product-list" class="list-group mt-1 " style="max-height: 200px; overflow-y: auto; display: none;">
             <% @productos.each do |producto| %>
               <li class="list-group-item product-item"
                   data-id="<%= producto.id %>"

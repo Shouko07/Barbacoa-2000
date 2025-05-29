@@ -2,7 +2,7 @@
 <div class="wrapper">
   <div style="display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
     <h1 style="margin: 0;">Resumen del mes <%= @mes %></h1>
-    <%= link_to 'Volver al calendario', reportes_path, style: "padding: 0.5rem 1rem; background-color: #603719; color: white; border: 1px solid #603719; border-radius: 0.5rem; text-decoration: none; font-weight: 600; cursor: pointer;" %>
+    <%= link_to 'Volver al calendario', reportes_path, class: "btn-cafe"%>
   <%= link_to "Exportar a Excel", reportes_por_mes_excel_path(@mes), class: "btn-cafe" %>
 
   </div>
